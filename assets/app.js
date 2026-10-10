@@ -55,6 +55,19 @@
     return s;
   })();
 
+  function matches(p, q) {
+    if (!q) return true;
+    q = q.toLowerCase();
+    if (p.name.toLowerCase().indexOf(q) !== -1) return true;
+    if (t(p.tagline).toLowerCase().indexOf(q) !== -1) return true;
+    if (t(p.summary).toLowerCase().indexOf(q) !== -1) return true;
+    if (p.stack.join(" ").toLowerCase().indexOf(q) !== -1) return true;
+    if (LANGS[p.lang].toLowerCase().indexOf(q) !== -1) return true;
+    return p.tags.some(function (tag) {
+      return t(TAGS[tag]).toLowerCase().indexOf(q) !== -1;
+    });
+  }
+
   /* ---------- shared chrome ---------- */
 
   function applyChrome() {
@@ -98,6 +111,21 @@
 
   /* ---------- list view ---------- */
 
+  var state = { q: "", tag: null, sort: "updated" };
+
+  var SORTS = {
+    updated: function (a, b) { return b.updated.localeCompare(a.updated); },
+    loc: function (a, b) { return b.loc - a.loc; },
+    commits: function (a, b) { return b.commits - a.commits; },
+    name: function (a, b) { return a.name.localeCompare(b.name); }
+  };
+
+  function visibleProjects() {
+    return PROJECTS.filter(function (p) {
+      return (!state.tag || p.tags.indexOf(state.tag) !== -1) && matches(p, state.q);
+    }).sort(SORTS[state.sort]);
+  }
+
   function renderList() {
     view.innerHTML = "";
     var page = el("div", "fade-in");
@@ -109,16 +137,104 @@
     hero.appendChild(statStrip());
     page.appendChild(hero);
 
-    if (PROJECTS.length) {
-      var grid = el("div", "grid");
-      PROJECTS.forEach(function (p) { grid.appendChild(card(p)); });
-      page.appendChild(grid);
+    var filters = el("div", "filters");
+
+    var search = el("div", "search-box");
+    search.innerHTML =
+      '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" ' +
+      'stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle>' +
+      '<path d="m20 20-3.5-3.5"></path></svg>';
+    var input = el("input");
+    input.type = "search";
+    input.placeholder = t(SITE.ui.search);
+    input.value = state.q;
+    input.setAttribute("aria-label", t(SITE.ui.search));
+    search.appendChild(input);
+    filters.appendChild(search);
+
+    var usedTags = {};
+    PROJECTS.forEach(function (p) {
+      p.tags.forEach(function (tag) { usedTags[tag] = (usedTags[tag] || 0) + 1; });
+    });
+
+    var allChip = el("button", "chip" + (state.tag ? "" : " on"),
+      esc(t(SITE.ui.all)) + '<span class="chip-n">' + PROJECTS.length + "</span>");
+    allChip.type = "button";
+    allChip.addEventListener("click", function () { state.tag = null; renderList(); });
+    filters.appendChild(allChip);
+
+    Object.keys(TAGS).forEach(function (tag) {
+      if (!usedTags[tag]) return;
+      var b = el("button", "chip" + (state.tag === tag ? " on" : ""),
+        esc(t(TAGS[tag])) + '<span class="chip-n">' + usedTags[tag] + "</span>");
+      b.type = "button";
+      b.addEventListener("click", function () {
+        state.tag = state.tag === tag ? null : tag;
+        renderList();
+      });
+      filters.appendChild(b);
+    });
+
+    var right = el("div", "filters-right");
+
+    var wrap = el("div", "select-wrap");
+    var sel = el("select");
+    sel.setAttribute("aria-label", t(SITE.ui.sort));
+    [["updated", SITE.ui.sortUpdated], ["loc", SITE.ui.sortLoc],
+     ["commits", SITE.ui.sortCommits], ["name", SITE.ui.sortName]].forEach(function (o) {
+      var opt = el("option", null, esc(t(o[1])));
+      opt.value = o[0];
+      if (state.sort === o[0]) opt.selected = true;
+      sel.appendChild(opt);
+    });
+    sel.addEventListener("change", function () {
+      state.sort = sel.value;
+      renderList();
+    });
+    wrap.appendChild(sel);
+    right.appendChild(wrap);
+
+    if (state.q || state.tag) {
+      var clear = el("button", "link-btn", esc(t(SITE.ui.clear)));
+      clear.type = "button";
+      clear.addEventListener("click", function () {
+        state.q = ""; state.tag = null; renderList();
+      });
+      right.appendChild(clear);
+    }
+
+    filters.appendChild(right);
+    page.appendChild(filters);
+
+    var items = visibleProjects();
+    page.appendChild(el("p", "result-line",
+      esc(t(SITE.ui.showing).replace("{n}", items.length))));
+
+    if (!items.length) {
+      var empty = el("div", "empty");
+      empty.appendChild(el("p", null, esc(PROJECTS.length ? t(SITE.ui.empty) : t(SITE.ui.noProjects))));
+      var reset = el("button", "chip on", esc(t(SITE.ui.clear)));
+      reset.type = "button";
+      reset.addEventListener("click", function () {
+        state.q = ""; state.tag = null; renderList();
+      });
+      empty.appendChild(reset);
+      page.appendChild(empty);
     } else {
-      page.appendChild(el("div", "empty", esc(t(SITE.ui.noProjects))));
+      var grid = el("div", "grid");
+      items.forEach(function (p) { grid.appendChild(card(p)); });
+      page.appendChild(grid);
     }
 
     view.appendChild(page);
     applyChrome();
+
+    input.addEventListener("input", function () {
+      state.q = input.value.trim();
+      renderList();
+      var again = view.querySelector(".search-box input");
+      if (again) { again.focus(); again.setSelectionRange(again.value.length, again.value.length); }
+    });
   }
 
   function card(p) {
