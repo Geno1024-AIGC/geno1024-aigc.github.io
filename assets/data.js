@@ -246,4 +246,76 @@ const PROJECTS = [
       { zh: "README 没写的还有自建中继：server / client 子命令走自定义的换行分隔 JSON 控制协议，按需建立数据连接", en: "Beyond the README: server / client subcommands relay over a custom newline-delimited JSON control protocol with on-demand data connections" },
       { zh: "28 个 Go 测试，其中包含一个跑在进程内的 SSH 测试服务器", en: "28 Go tests, including a real SSH test server running in-process" }
     ]},
+  {
+    id: "pdf-extractor",
+    name: "pdf-extractor",
+    repo: "Geno1024-AIGC/pdf-extractor",
+    url: "https://github.com/Geno1024-AIGC/pdf-extractor",
+    tags: ["desktop", "tooling"],
+    lang: "cpp",
+    stack: ["C++17", "Qt 5 Widgets", "zlib", "CMake"],
+    loc: 5140, commits: 48, tests: 1, ci: true, updated: "2026-10-07",
+    tagline: {
+      zh: "PDF 内部结构浏览器与提取器",
+      en: "A PDF internals browser and extractor"
+    },
+    summary: {
+      zh: "C++ / Qt5 写的 PDF 解析工具。刻意不做渲染器——它是一个检查器：把每个对象摊开给你看。",
+      en: "A PDF parsing tool in C++/Qt5. Deliberately not a renderer: it is an inspector that lays every object out for you."
+    },
+    highlights: [
+      { zh: "每个对象都有六个页签：结构树、解码文本、十六进制、图像、原始内容算子、字体", en: "Six tabs per object: structure tree, decoded text, hex dump, images, raw content operators, fonts" },
+      { zh: "手写的 CFF / Type1C / CIDFontType0C 字体解析器，能反汇编每个字形的 Type 2 charstring 程序", en: "A hand-written CFF / Type1C / CIDFontType0C font parser that disassembles each glyph's Type 2 charstring program" },
+      { zh: "解 FlateDecode（含 Predictor）、ASCII85、ASCIIHex、RunLength、LZW；图像流按原字节透传", en: "Unpacks FlateDecode (with Predictor), ASCII85, ASCIIHex, RunLength and LZW; image streams pass through as raw bytes" },
+      { zh: "7 个 CLI 子命令，加中英双语界面、拖放打开、最近文件", en: "Seven CLI subcommands, plus a bilingual 中/English UI, drag-and-drop and recent files" },
+      { zh: "Windows 打包会递归遍历 PE 导入表补齐 zlib / ICU / freetype，然后在没有 MinGW 的 cmd 里跑一遍，证明确实自包含", en: "Windows packaging recursively walks PE imports to bundle zlib, ICU and freetype, then runs the exe under cmd — which has no MinGW — to prove it's self-contained" }
+    ]},
+  {
+    id: "qrcode-step-reader",
+    name: "qrcode-step-reader",
+    repo: "Geno1024-AIGC/qrcode-step-reader",
+    url: "https://github.com/Geno1024-AIGC/qrcode-step-reader",
+    tags: ["android", "desktop"],
+    lang: "kotlin",
+    stack: ["Kotlin Multiplatform", "Compose Multiplatform", "CameraX", "ZXing (仅测试)"],
+    loc: 4118, commits: 5, tests: 5, ci: false, updated: "2026-08-16",
+    tagline: {
+      zh: "把二维码的解码过程动画化",
+      en: "Animating how a QR code actually decodes"
+    },
+    summary: {
+      zh: "读到二维码之后，它把整个解码过程分阶段回放：取样 → 二值化 → 校正 → 格式信息 → 去掩码 → 读位 → 分块 → Reed–Solomon 校验 → 文本。每一步下面写的都是真实的中间值，不是泛泛的说明。",
+      en: "Once it reads the QR code, it replays the whole decode stage by stage — capture, binarize, rectify, format info, unmask, read bits, split, Reed–Solomon, text. Each caption shows the real intermediate values, not generic prose."
+    },
+    highlights: [
+      { zh: "解码器从零手写：定位图形交叉校验、透视校正、格式信息 BCH 解码、8 种数据掩码、GF(256) 上带真实伴随式计算的 Reed–Solomon", en: "Written from scratch: finder-pattern cross-checks, perspective rectification, format-info BCH decoding, all 8 data masks, Reed–Solomon over GF(256) with real syndrome computation" },
+      { zh: "解码器返回的是一条时间线而不是一个字符串：每一阶段都带完整的模块矩阵和单元格角色标注", en: "The decoder returns a timeline, not a string: each stage carries the full module grid plus cell roles, so the UI can scrub the pipeline" },
+      { zh: "掩码公式直接写进双语字幕，例如 ((y·x) % 3 + (x + y) % 2) % 2 == 0", en: "Even the mask formulas appear in the bilingual captions, e.g. ((y·x) % 3 + (x + y) % 2) % 2 == 0" },
+      { zh: "拿 ZXing 生成的测试图做交叉验证（ZXing 只出现在测试依赖里，解码器本身不依赖它）", en: "Cross-validated against ZXing-generated test images — ZXing appears only as a test dependency, the decoder itself does not use it" },
+      { zh: "一套 Compose Multiplatform 代码同时服务 Android 相机与桌面文件选择器，打包成 Deb / Rpm / AppImage", en: "One Compose Multiplatform codebase serving Android CameraX and the desktop file picker, packaged as Deb / Rpm / AppImage" }
+    ]},
+  {
+    id: "qqfm",
+    name: "qqfm",
+    repo: "Geno1024-AIGC/qqfm",
+    url: "https://github.com/Geno1024-AIGC/qqfm",
+    tags: ["android"],
+    lang: "kotlin",
+    stack: ["Kotlin", "Jetpack Compose", "Gradle KTS", "零第三方库"],
+    loc: 3573, commits: 25, tests: 0, ci: true, updated: "2026-10-10",
+    tagline: {
+      zh: "QQ 缓存图片的相册",
+      en: "A gallery for images cached inside Tencent QQ"
+    },
+    summary: {
+      zh: "浏览、查看、批量删除腾讯 QQ 私有目录里缓存的图片。因为 /Android/data 在 Android 11 以后读不到，所有文件操作都走 root shell。",
+      en: "Browse, view and bulk-delete the images Tencent QQ caches in its private directory. Because /Android/data is unreadable on Android 11+, every file operation goes through a root shell."
+    },
+    highlights: [
+      { zh: "用 find -print0 | xargs -0 stat 流式扫描约 16.5 万个文件，并落一份 TSV 索引，重开就秒进", en: "Streams find -print0 | xargs -0 stat across ~165k files with an on-disk TSV index, so relaunching is instant" },
+      { zh: "删一张图要连带 QQ 生成的 3–4 个同名变体，但只统计真实存在的那几个", en: "Deleting one image expands to QQ's 3–4 sibling variants — but only the files that actually existed get counted" },
+      { zh: "内置更新器走 4 个可选镜像，但版本元数据永远从 api.github.com 读，镜像没法谎报版本", en: "The in-app updater pulls through 4 selectable mirrors, while release metadata is always read from api.github.com so a mirror can't spoof a version" },
+      { zh: "12 种 APK 安装失败码各自对应一条明确的 UI 提示，而不是一句「安装失败」", en: "Twelve distinct install-failure codes each map to their own UI message, instead of one generic 'install failed'" },
+      { zh: "零第三方库，连 JSON 解析器都是自己写的；因为每次读文件都要 fork su，用 Semaphore(4) 限制并发", en: "Zero third-party libraries — even the JSON parser is hand-rolled; a Semaphore(4) caps concurrency because every read forks su" }
+    ]},
 ];
