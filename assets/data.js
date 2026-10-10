@@ -174,4 +174,76 @@ const PROJECTS = [
       { zh: "唯一有正式 release 工作流的仓库：打 tag 出已签名 APK", en: "The only repo with a real release workflow: tag it, get a keystore-signed APK" },
       { zh: "AGENTS.md 要求每次提交重新生成 tokens.txt，把造这个 App 实际花掉的 AI token 成本编译进 BuildConfig", en: "AGENTS.md mandates regenerating tokens.txt on every commit, compiling the real AI token cost of building the app into BuildConfig" }
     ]},
+  {
+    id: "free-zip",
+    name: "free-zip",
+    repo: "Geno1024-AIGC/free-zip",
+    url: "https://github.com/Geno1024-AIGC/free-zip",
+    tags: ["library", "cli"],
+    lang: "java",
+    stack: ["Java 21", "Kotlin 2.4", "Gradle KTS", "JUnit 5"],
+    loc: 4540, commits: 33, tests: 52, ci: true, updated: "2026-10-10",
+    tagline: {
+      zh: "把 ZIP 的「压缩」和「打包」拆成两件事",
+      en: "Splitting ZIP compression from ZIP assembly"
+    },
+    summary: {
+      zh: "自己实现的 ZIP 编解码器，Java 和 Kotlin 各写了一份，类级别一一对应。pack 把每个条目压缩成 .lfh / .data / .cdfh 三件套，assemble 退化成纯字节拷贝——同一份压缩数据可以反复组装成不同的归档。",
+      en: "A hand-written ZIP codec, implemented twice — once in Java, once in Kotlin — class for class. pack compresses each entry into an .lfh / .data / .cdfh triple; assemble degenerates to pure byte-copy, so one compressed payload can be re-assembled into many archives."
+    },
+    highlights: [
+      { zh: "直接对着 APPNOTE.TXT 写，每段代码都标注了对应的规范小节", en: "Written straight against APPNOTE.TXT, with the governing section cited in every code block" },
+      { zh: "size 子命令不读任何负载就能算出成品的精确 Content-Length", en: "The size subcommand computes an exact Content-Length without reading a single payload byte" },
+      { zh: "edit 只改元数据、绝不碰 .data，CRC 和长度天然保持有效", en: "edit mutates metadata as pure functions and never touches .data, so CRCs and sizes stay valid" },
+      { zh: "Zip64 支持 auto / always / never；选 never 时宁可硬失败，也不产出打不开的包", en: "Zip64 with auto / always / never — never hard-fails rather than silently writing an unreadable archive" },
+      { zh: "Java 和 Kotlin 两边互相组装验证；52 个 JUnit 测试在 CI 里跑，含 Zip64 溢出、超长文件名、重复条目等加固用例", en: "Interop is verified in both directions; 52 JUnit tests run in CI, covering Zip64 overflow, over-long names and duplicate entries" }
+    ]},
+  {
+    id: "home-erp",
+    name: "home-erp",
+    repo: "Geno1024-AIGC/home-erp",
+    url: "https://github.com/Geno1024-AIGC/home-erp",
+    tags: ["server", "android"],
+    lang: "kotlin",
+    stack: ["Kotlin", "JDK 25", "Gradle KTS", "零外部依赖"],
+    loc: 6450, commits: 107, tests: 4, ci: true, updated: "2026-10-01",
+    tagline: {
+      zh: "三层结构的自托管家用 ERP",
+      en: "A self-hosted household ERP in three tiers"
+    },
+    summary: {
+      zh: "家里的 Star 服务、云端中继 Planet、手机端 Satellite。关键在打通 NAT：Star 主动外连 Planet，Planet 不存数据，只做逐字转发。",
+      en: "Star at home, a Planet relay in the cloud, a Satellite on the phone. The point is NAT traversal: Star dials out to Planet, and Planet stores nothing — it just relays verbatim."
+    },
+    highlights: [
+      { zh: "Star 主动外连，家里路由器上不需要开任何入站端口", en: "Star dials out, so no inbound port ever has to be opened on the home router" },
+      { zh: "15 个 Gradle 模块跑在裸 JDK 上：数据库、JSON 编解码、HTTP 路由全是手写的", en: "15 Gradle modules on the bare JDK: the append-only-log store, JSON codec and HTTP router are all hand-written" },
+      { zh: "零外部依赖——没有数据库、没有 Web 框架、没有前端框架", en: "Zero external dependencies: no database, no web framework, no UI toolkit" },
+      { zh: ".gef 特性包格式：原生 UI DSL 与 WebView HTML 两种渲染器并存", en: "The .gef bundle format renders either as a native UI DSL or as HTML inside a WebView" },
+      { zh: "每次 CI 发一个滚动 canary：服务器压缩包、APK 和特性包一起发布，保证客户端和服务端同版本", en: "One rolling canary release carries the server zips, APKs and feature bundles together, so client and server stay in lockstep" }
+    ]},
+  {
+    id: "port-forwarder",
+    name: "port-forwarder",
+    repo: "Geno1024-AIGC/port-forwarder",
+    url: "https://github.com/Geno1024-AIGC/port-forwarder",
+    tags: ["server", "cli", "web"],
+    lang: "go",
+    stack: ["Go 1.25", "net/http", "golang.org/x/crypto", "embed"],
+    loc: 5002, commits: 33, tests: 28, ci: false, updated: "2026-09-09",
+    tagline: {
+      zh: "带网页控制台的 TCP 端口转发器",
+      en: "A TCP port forwarder with a web console"
+    },
+    summary: {
+      zh: "单文件 TCP 转发守护进程，管理界面是内嵌的网页而不是配置文件。除了本地正向转发，还支持基于普通 sshd 的反向转发。",
+      en: "A single-binary TCP forwarding daemon whose management surface is an embedded web UI instead of a config file. Local relaying, plus reverse forwarding over stock sshd."
+    },
+    highlights: [
+      { zh: "两种模式：本地 TCP 中继，以及等价于 ssh -R 的反向转发", en: "Two modes in one tool: a local TCP relay and an ssh -R-equivalent reverse forward" },
+      { zh: "凭据与规则分开存（一份 SSH 登录可支撑多条规则），文件权限 0600", en: "Credentials are stored apart from rules — one SSH login backs many rules — both files at 0600" },
+      { zh: "支持密码 / ssh-agent / 私钥三种认证，并有「探测登录」接口在保存规则前先试一次", en: "Password, ssh-agent or private-key auth, plus a probe endpoint that tests a login before the rule is saved" },
+      { zh: "README 没写的还有自建中继：server / client 子命令走自定义的换行分隔 JSON 控制协议，按需建立数据连接", en: "Beyond the README: server / client subcommands relay over a custom newline-delimited JSON control protocol with on-demand data connections" },
+      { zh: "28 个 Go 测试，其中包含一个跑在进程内的 SSH 测试服务器", en: "28 Go tests, including a real SSH test server running in-process" }
+    ]},
 ];
