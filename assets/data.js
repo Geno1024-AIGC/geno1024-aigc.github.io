@@ -7,15 +7,15 @@ const SITE = {
     kicker: { zh: "Vibe-coded", en: "Vibe-coded" },
     title: { zh: "从零写出来的东西", en: "Things written from scratch" },
     subtitle: {
-      zh: "一个 AI 辅助编程的个人项目集合。Android 应用、Go 服务、Qt / C++ 桌面工具，以及几个手写的编解码器和解释器。没有模板，全部从零搭。",
-      en: "A personal collection of AI-assisted projects. Android apps, Go services, Qt and C++ desktop tools, plus a few hand-written codecs and interpreters. No scaffolding — everything built up from nothing."
+      zh: "一个全部由 AI 写成的项目集合，0% 人工代码。Android 应用、Go 服务、Qt / C++ 桌面工具，以及几个从零实现的编解码器和解释器。没有模板，全部从零搭。",
+      en: "An entire collection written by AI, with 0% human-written code. Android apps, Go services, Qt and C++ desktop tools, plus a few codecs and interpreters built from scratch. No scaffolding — everything built up from nothing."
     }
   },
   about: {
     title: { zh: "关于", en: "About" },
     lead: {
-      zh: "这些项目大多是给自己用的工具：手机上没现成 app 就写一个，某个格式没工具能看就自己解析一个。换来的是一堆“刚好够用、而且完全知道它为什么这样写”的代码。",
-      en: "Most of these are tools built for myself: when no app existed on Android, I wrote one; when no tool could open a format, I wrote the parser. What I got in return is a pile of code that is just good enough — and that I understand line by line."
+      zh: "这个站点和它收录的项目全部由 AI 写成，0% 人工代码。它们大多是因为没有现成工具才诞生的：手机上没有能浏览这些图片的应用，某个格式没有能解析的工具。最后得到的是一堆“刚好够用”的代码——每一行人都能读明白，但没有一行是人写的。",
+      en: "This site and every project on it were written entirely by AI, with 0% human-written code. Most of them exist because nothing else did the job: no app on the phone to browse those images, no parser for that format. What came out is a pile of code that is just good enough — and that I can read line by line, though not one line of it was written by me."
     },
     principles: [
       {
@@ -69,7 +69,7 @@ const SITE = {
   },
   stats: {
     projects: { zh: "个项目", en: "projects" },
-    loc: { zh: "行手写代码", en: "lines of hand-written code" },
+    loc: { zh: "行代码", en: "lines of code" },
     commits: { zh: "次提交", en: "commits" },
     tests: { zh: "个自动化测试", en: "automated tests" },
     ci: { zh: "个项目接了 CI", en: "projects wired to CI" }
@@ -105,8 +105,8 @@ const SITE = {
     yes: { zh: "已接入", en: "Yes" },
     no: { zh: "无", en: "No" },
     footer: {
-      zh: "用 AI 代理辅助编程的项目集合 · 大部分为个人自用工具",
-      en: "A collection of AI-agent-assisted projects · mostly personal tools"
+      zh: "全部由 AI 写成 · 0% 人工代码 · 大部分为个人自用工具",
+      en: "Written entirely by AI · 0% human code · mostly personal tools"
     }
   }
 };
