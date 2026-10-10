@@ -265,10 +265,104 @@
     return a;
   }
 
+  /* ---------- detail view ---------- */
+
+  function renderDetail(id) {
+    var idx = -1;
+    for (var i = 0; i < PROJECTS.length; i++) {
+      if (PROJECTS[i].id === id) { idx = i; break; }
+    }
+    if (idx === -1) { location.hash = "#/"; return; }
+    var p = PROJECTS[idx];
+
+    view.innerHTML = "";
+    var page = el("div", "detail fade-in");
+
+    var back = el("a", "back-link", "&larr;&nbsp;" + esc(t(SITE.ui.back)));
+    back.href = "#/";
+    page.appendChild(back);
+
+    page.appendChild(el("h1", null, esc(p.name)));
+    page.appendChild(el("p", "detail-tagline", esc(t(p.tagline))));
+
+    var repo = el("a", "detail-repo", esc(p.repo) + " &nbsp;&nearr;");
+    repo.href = p.url;
+    repo.target = "_blank";
+    repo.rel = "noopener";
+    page.appendChild(repo);
+
+    var sumBlock = el("div", "detail-block");
+    sumBlock.appendChild(el("h2", "section-label", esc(t(SITE.ui.summary))));
+    sumBlock.appendChild(el("p", "detail-summary", esc(t(p.summary))));
+    page.appendChild(sumBlock);
+
+    var hlBlock = el("div", "detail-block");
+    hlBlock.appendChild(el("h2", "section-label", esc(t(SITE.ui.highlights))));
+    var ul = el("ul", "points");
+    p.highlights.forEach(function (h) { ul.appendChild(el("li", null, esc(t(h)))); });
+    hlBlock.appendChild(ul);
+    page.appendChild(hlBlock);
+
+    var stBlock = el("div", "detail-block");
+    stBlock.appendChild(el("h2", "section-label", esc(t(SITE.ui.stack))));
+    var chips = el("div", "chip-row");
+    p.stack.forEach(function (s) { chips.appendChild(el("span", "stack-chip", esc(s))); });
+    stBlock.appendChild(chips);
+    page.appendChild(stBlock);
+
+    var mBlock = el("div", "detail-block");
+    mBlock.appendChild(el("h2", "section-label", esc(t(SITE.ui.metrics))));
+    var grid = el("div", "metrics");
+    [
+      [num(p.loc), SITE.ui.lines, ""],
+      [num(p.commits), SITE.ui.commits, ""],
+      [p.tests > 0 ? num(p.tests) : t(SITE.ui.no), SITE.ui.tests, p.tests > 0 ? "on" : "off"],
+      [p.ci ? t(SITE.ui.yes) : t(SITE.ui.no), SITE.ui.ci, p.ci ? "on" : "off"],
+      [fmtDate(p.updated), SITE.ui.updated, ""]
+    ].forEach(function (m) {
+      var cell = el("div", "metric");
+      cell.appendChild(el("div", "metric-val " + m[2], esc(String(m[0]))));
+      cell.appendChild(el("div", "metric-key", esc(t(m[1]))));
+      grid.appendChild(cell);
+    });
+    mBlock.appendChild(grid);
+    page.appendChild(mBlock);
+
+    var tgBlock = el("div", "detail-block");
+    tgBlock.appendChild(el("h2", "section-label", esc(t(SITE.ui.tags))));
+    var tg = el("div", "chip-row");
+    p.tags.forEach(function (tag) { tg.appendChild(el("span", "stack-chip", esc(t(TAGS[tag])))); });
+    tgBlock.appendChild(tg);
+    page.appendChild(tgBlock);
+
+    var nav = el("div", "detail-nav");
+    if (idx > 0) {
+      var prev = PROJECTS[idx - 1];
+      var a = el("a", null, "<small>" + esc(t(SITE.ui.prev)) + "</small>" + esc(prev.name));
+      a.href = "#/p/" + prev.id;
+      nav.appendChild(a);
+    } else {
+      nav.appendChild(el("span", "spacer"));
+    }
+    if (idx < PROJECTS.length - 1) {
+      var nxt = PROJECTS[idx + 1];
+      var b = el("a", "next", "<small>" + esc(t(SITE.ui.next)) + "</small>" + esc(nxt.name));
+      b.href = "#/p/" + nxt.id;
+      nav.appendChild(b);
+    }
+    page.appendChild(nav);
+
+    view.appendChild(page);
+    applyChrome();
+    window.scrollTo(0, 0);
+  }
+
   /* ---------- router ---------- */
 
   function route() {
-    renderList();
+    var h = location.hash || "#/";
+    if (h.indexOf("#/p/") === 0) renderDetail(decodeURIComponent(h.slice(4)));
+    else renderList();
   }
 
   /* ---------- init ---------- */
