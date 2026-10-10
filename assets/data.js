@@ -389,4 +389,76 @@ const PROJECTS = [
       { zh: "内置 _opCount 指令上限，脚本跑飞时报错，而不是把标签页卡死", en: "A built-in _opCount cap errors out on a pathological script instead of freezing the tab" },
       { zh: "3 个文件、无构建、acorn 本地打包，可离线使用；先前后端版本用 CDP + WebSocket，后来重写成了纯前端", en: "Three files, no build step, acorn bundled locally so it works offline; it started as a CDP + WebSocket backend and was rewritten to be purely client-side" }
     ]},
+  {
+    id: "proxied-crawler",
+    name: "proxied-crawler",
+    repo: "Geno1024-AIGC/proxied-crawler",
+    url: "https://github.com/Geno1024-AIGC/proxied-crawler",
+    tags: ["server", "tooling"],
+    lang: "go",
+    stack: ["Go 1.22", "纯标准库", "crypto/x509", "embed"],
+    loc: 1429, commits: 11, tests: 0, ci: false, updated: "2026-08-10",
+    tagline: {
+      zh: "抓取网页响应体的中间人代理",
+      en: "A man-in-the-middle proxy that captures response bodies"
+    },
+    summary: {
+      zh: "把系统代理指向它，HTTP 响应体会按 URL 结构落盘。HTTPS 通过自签根 CA 加按域名现场签发的叶证书来解密。",
+      en: "Point your proxy settings at it and every HTTP response body lands on disk, keyed by URL. HTTPS works by MITM-ing the CONNECT tunnel with leaf certificates issued on the fly from a locally generated root CA."
+    },
+    highlights: [
+      { zh: "纯 Go 标准库，go.mod 里一行 require 都没有", en: "Pure Go standard library — zero require lines in go.mod" },
+      { zh: "首次运行自动生成根 CA，按域名现场签发叶证书", en: "Generates a root CA on first run and issues per-host leaf certificates on the fly" },
+      { zh: "chunked 与 Content-Length 两种响应都处理，回写客户端时统一改写成定长", en: "Handles both Content-Length and chunked responses, rewriting them to fixed-length on the way back to the client" },
+      { zh: "内嵌 GUI：实时请求 / 字节 / 错误统计、可折叠的结果树、文件预览", en: "An embedded GUI: live request / byte / error counters, a collapsible result tree, and file preview" },
+      { zh: "诚实的边界写在 README 里：整包响应缓存在内存里，只监听回环地址", en: "Honest limits, written down: responses are buffered whole in memory, and it binds loopback only" }
+    ]},
+  {
+    id: "scheduled-backup",
+    name: "scheduled-backup",
+    repo: "Geno1024-AIGC/scheduled-backup",
+    url: "https://github.com/Geno1024-AIGC/scheduled-backup",
+    tags: ["desktop"],
+    lang: "cpp",
+    stack: ["C++17", "Qt 6 Widgets", "CMake", "系统 git"],
+    loc: 2907, commits: 10, tests: 0, ci: false, updated: "2026-08-13",
+    tagline: {
+      zh: "把任意文件夹变成定时 Git 备份",
+      en: "Turn any folder into a scheduled Git backup"
+    },
+    summary: {
+      zh: "常驻系统托盘的 Qt 小工具，按间隔执行 git add → commit → push 到一个私有的 GitHub 或 Gitee 仓库。首次配置由向导弹导完成。",
+      en: "A tray-resident Qt client that runs git add → commit → push on an interval to a private GitHub or Gitee repo. A wizard handles first-run setup."
+    },
+    highlights: [
+      { zh: "向导弹导：选平台 → 一键注册 → 建 PAT → 自动创建私有仓库 → 生成 .gitignore → 首次推送", en: "A wizard: pick a platform, one-click signup, mint a PAT, auto-create the private repo, write .gitignore, first push" },
+      { zh: "直接 shell out 到系统的 git，token 留在本地凭据文件里，永远不会进备份内容", en: "Shells out to the system git; the token stays in a local credentials file and never enters the backup itself" },
+      { zh: "历史页签：待提交变更、commit 日志、每个 commit 的文件列表", en: "A history tab: pending changes, commit log, and per-commit file lists" },
+      { zh: "提交信息按改动大小分级：{Init} / [Update] / (Fix)", en: "Commit messages graded by magnitude: {Init} / [Update] / (Fix)" },
+      { zh: "README 认真写了没有 root 权限的 Linux 上打包 Qt 6 的真实路径，以及静态 Qt 和 AppImage 单文件两条路", en: "The README documents the real no-root Qt 6 packaging path on Linux, plus the static-Qt and AppImage single-file routes" }
+    ]},
+  {
+    id: "toolbox",
+    name: "toolbox",
+    repo: "Geno1024-AIGC/toolbox",
+    url: "https://github.com/Geno1024-AIGC/toolbox",
+    tags: ["desktop", "cli", "tooling"],
+    lang: "cpp",
+    stack: ["C++17", "Qt 6 Widgets", "CMake", "原生 JS 前端"],
+    loc: 2028, commits: 10, tests: 0, ci: false, updated: "2026-09-28",
+    tagline: {
+      zh: "给这堆项目做的统一启动器",
+      en: "A launcher that ties the whole pile together"
+    },
+    summary: {
+      zh: "一个 JSON 清单对应一个工具，把旁边这十几个仓库变成一个统一的启停面板。同一个核心库同时驱动 Qt 桌面 GUI 和 toolboxd 无头服务。",
+      en: "One JSON manifest per tool turns the sibling repositories into a single start/stop control panel. One core library drives both the Qt desktop GUI and the headless toolboxd server."
+    },
+    highlights: [
+      { zh: "注册一个新工具只需要往 manifests/ 里丢一个 JSON 文件，不用改代码", en: "Registering a tool is one JSON file in manifests/ — no code changes" },
+      { zh: "在 QTcpServer 上手写了约 150 行的 HTTP/1.1 服务器：请求解析、MIME 映射、静态资源与 Markdown 文档", en: "A ~150-line HTTP/1.1 server written directly on QTcpServer: request parsing, MIME mapping, static and Markdown serving" },
+      { zh: "五种工具类型：service / webapp / desktop / android / document", en: "Five tool types: service, webapp, desktop, android, document" },
+      { zh: "进程五态（Stopped / Starting / Running / Detached / Failed）、实时 PID、滚动日志、异步 TCP 健康探测", en: "Five process states (Stopped / Starting / Running / Detached / Failed), live PID, rolling log tail, async TCP health probes" },
+      { zh: "自带一份 AGENTS.md，把提交信息规范写成 AI 代理也能照做的约定", en: "Ships an AGENTS.md that states the commit conventions as rules an AI agent can follow" }
+    ]},
 ];
