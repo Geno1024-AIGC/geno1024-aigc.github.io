@@ -149,7 +149,8 @@ const PROJECTS = [
       { zh: "216 个单元测试覆盖 Git 核心，分布在 30 个测试文件里", en: "216 unit tests over the Git core, spread across 30 test files" },
       { zh: "CI 会核对 APK 签名证书的 SHA-256，对不上就拒绝出包——这正是那种「绿灯但其实签错包」的失败", en: "CI verifies the built APK's signing-cert SHA-256 and refuses to ship on a mismatch — exactly the failure that otherwise looks like a green run" },
       { zh: "约 16,700 行 Kotlin，这一组里最大的 Android 代码库", en: "~16,700 lines of Kotlin — the largest Android codebase in this collection" }
-    ]},
+    ]
+  },
   {
     id: "opencode-inspire",
     name: "opencode-inspire",
@@ -173,7 +174,8 @@ const PROJECTS = [
       { zh: "用量日历、按模型筛选的统计图表，以及可分享的总结卡片", en: "Token-usage calendar, per-model filtered charts, and shareable summary cards" },
       { zh: "唯一有正式 release 工作流的仓库：打 tag 出已签名 APK", en: "The only repo with a real release workflow: tag it, get a keystore-signed APK" },
       { zh: "AGENTS.md 要求每次提交重新生成 tokens.txt，把造这个 App 实际花掉的 AI token 成本编译进 BuildConfig", en: "AGENTS.md mandates regenerating tokens.txt on every commit, compiling the real AI token cost of building the app into BuildConfig" }
-    ]},
+    ]
+  },
   {
     id: "free-zip",
     name: "free-zip",
@@ -197,7 +199,8 @@ const PROJECTS = [
       { zh: "edit 只改元数据、绝不碰 .data，CRC 和长度天然保持有效", en: "edit mutates metadata as pure functions and never touches .data, so CRCs and sizes stay valid" },
       { zh: "Zip64 支持 auto / always / never；选 never 时宁可硬失败，也不产出打不开的包", en: "Zip64 with auto / always / never — never hard-fails rather than silently writing an unreadable archive" },
       { zh: "Java 和 Kotlin 两边互相组装验证；52 个 JUnit 测试在 CI 里跑，含 Zip64 溢出、超长文件名、重复条目等加固用例", en: "Interop is verified in both directions; 52 JUnit tests run in CI, covering Zip64 overflow, over-long names and duplicate entries" }
-    ]},
+    ]
+  },
   {
     id: "home-erp",
     name: "home-erp",
@@ -221,7 +224,8 @@ const PROJECTS = [
       { zh: "零外部依赖——没有数据库、没有 Web 框架、没有前端框架", en: "Zero external dependencies: no database, no web framework, no UI toolkit" },
       { zh: ".gef 特性包格式：原生 UI DSL 与 WebView HTML 两种渲染器并存", en: "The .gef bundle format renders either as a native UI DSL or as HTML inside a WebView" },
       { zh: "每次 CI 发一个滚动 canary：服务器压缩包、APK 和特性包一起发布，保证客户端和服务端同版本", en: "One rolling canary release carries the server zips, APKs and feature bundles together, so client and server stay in lockstep" }
-    ]},
+    ]
+  },
   {
     id: "port-forwarder",
     name: "port-forwarder",
@@ -245,7 +249,8 @@ const PROJECTS = [
       { zh: "支持密码 / ssh-agent / 私钥三种认证，并有「探测登录」接口在保存规则前先试一次", en: "Password, ssh-agent or private-key auth, plus a probe endpoint that tests a login before the rule is saved" },
       { zh: "README 没写的还有自建中继：server / client 子命令走自定义的换行分隔 JSON 控制协议，按需建立数据连接", en: "Beyond the README: server / client subcommands relay over a custom newline-delimited JSON control protocol with on-demand data connections" },
       { zh: "28 个 Go 测试，其中包含一个跑在进程内的 SSH 测试服务器", en: "28 Go tests, including a real SSH test server running in-process" }
-    ]},
+    ]
+  },
   {
     id: "pdf-extractor",
     name: "pdf-extractor",
@@ -269,7 +274,8 @@ const PROJECTS = [
       { zh: "解 FlateDecode（含 Predictor）、ASCII85、ASCIIHex、RunLength、LZW；图像流按原字节透传", en: "Unpacks FlateDecode (with Predictor), ASCII85, ASCIIHex, RunLength and LZW; image streams pass through as raw bytes" },
       { zh: "7 个 CLI 子命令，加中英双语界面、拖放打开、最近文件", en: "Seven CLI subcommands, plus a bilingual 中/English UI, drag-and-drop and recent files" },
       { zh: "Windows 打包会递归遍历 PE 导入表补齐 zlib / ICU / freetype，然后在没有 MinGW 的 cmd 里跑一遍，证明确实自包含", en: "Windows packaging recursively walks PE imports to bundle zlib, ICU and freetype, then runs the exe under cmd — which has no MinGW — to prove it's self-contained" }
-    ]},
+    ]
+  },
   {
     id: "qrcode-step-reader",
     name: "qrcode-step-reader",
@@ -293,7 +299,8 @@ const PROJECTS = [
       { zh: "掩码公式直接写进双语字幕，例如 ((y·x) % 3 + (x + y) % 2) % 2 == 0", en: "Even the mask formulas appear in the bilingual captions, e.g. ((y·x) % 3 + (x + y) % 2) % 2 == 0" },
       { zh: "拿 ZXing 生成的测试图做交叉验证（ZXing 只出现在测试依赖里，解码器本身不依赖它）", en: "Cross-validated against ZXing-generated test images — ZXing appears only as a test dependency, the decoder itself does not use it" },
       { zh: "一套 Compose Multiplatform 代码同时服务 Android 相机与桌面文件选择器，打包成 Deb / Rpm / AppImage", en: "One Compose Multiplatform codebase serving Android CameraX and the desktop file picker, packaged as Deb / Rpm / AppImage" }
-    ]},
+    ]
+  },
   {
     id: "qqfm",
     name: "qqfm",
@@ -317,7 +324,8 @@ const PROJECTS = [
       { zh: "内置更新器走 4 个可选镜像，但版本元数据永远从 api.github.com 读，镜像没法谎报版本", en: "The in-app updater pulls through 4 selectable mirrors, while release metadata is always read from api.github.com so a mirror can't spoof a version" },
       { zh: "12 种 APK 安装失败码各自对应一条明确的 UI 提示，而不是一句「安装失败」", en: "Twelve distinct install-failure codes each map to their own UI message, instead of one generic 'install failed'" },
       { zh: "零第三方库，连 JSON 解析器都是自己写的；因为每次读文件都要 fork su，用 Semaphore(4) 限制并发", en: "Zero third-party libraries — even the JSON parser is hand-rolled; a Semaphore(4) caps concurrency because every read forks su" }
-    ]},
+    ]
+  },
   {
     id: "picture-frame-android",
     name: "picture-frame-android",
@@ -341,7 +349,8 @@ const PROJECTS = [
       { zh: "README 里写下了 canary 更新的威胁模型：清单被投毒也只能让更新失败，装不上别人的包——因为 Android 拒绝不同签名的更新", en: "The README reasons through the canary-updater threat model: a poisoned manifest can only fail the update, never install a foreign APK, because Android refuses a differently-signed update" },
       { zh: "CI 真的跑 testDebugUnitTest 和 lintDebug 并当门禁用，不是只 assemble 一下", en: "CI actually runs testDebugUnitTest and lintDebug as gates, rather than just assembling" },
       { zh: "7 个一键预设：拍立得、暗夜、虚化、暖阳、双线、留白、白边", en: "Seven one-tap presets: 拍立得, 暗夜, 虚化, 暖阳, 双线, 留白, 白边" }
-    ]},
+    ]
+  },
   {
     id: "adbd-tcp",
     name: "adbd-tcp",
@@ -364,7 +373,8 @@ const PROJECTS = [
       { zh: "146 行的 MainActivity，所有 su -c 调用都放在后台线程上", en: "A 146-line MainActivity; every su -c call runs on a worker thread" },
       { zh: "实时读回 service.adb.tcp.port 与 init.svc.adbd 的状态，端口号持久化到 SharedPreferences", en: "Reads back the live status of both the port property and the service; the port is persisted in SharedPreferences" },
       { zh: "GitHub Actions 每次 push 构建一个 892 KB 的 debug APK 并传成 artifact", en: "GitHub Actions builds an 892 KB debug APK on every push and uploads it as an artifact" }
-    ]},
+    ]
+  },
   {
     id: "nodejs-step-executor",
     name: "nodejs-step-executor",
@@ -388,7 +398,8 @@ const PROJECTS = [
       { zh: "重写了 map / filter / forEach / reduce / some / every / find / findIndex / sort，回调能单步进去", en: "Reimplemented map / filter / forEach / reduce / some / every / find / findIndex / sort so callbacks are steppable" },
       { zh: "内置 _opCount 指令上限，脚本跑飞时报错，而不是把标签页卡死", en: "A built-in _opCount cap errors out on a pathological script instead of freezing the tab" },
       { zh: "3 个文件、无构建、acorn 本地打包，可离线使用；先前后端版本用 CDP + WebSocket，后来重写成了纯前端", en: "Three files, no build step, acorn bundled locally so it works offline; it started as a CDP + WebSocket backend and was rewritten to be purely client-side" }
-    ]},
+    ]
+  },
   {
     id: "proxied-crawler",
     name: "proxied-crawler",
@@ -412,7 +423,8 @@ const PROJECTS = [
       { zh: "chunked 与 Content-Length 两种响应都处理，回写客户端时统一改写成定长", en: "Handles both Content-Length and chunked responses, rewriting them to fixed-length on the way back to the client" },
       { zh: "内嵌 GUI：实时请求 / 字节 / 错误统计、可折叠的结果树、文件预览", en: "An embedded GUI: live request / byte / error counters, a collapsible result tree, and file preview" },
       { zh: "诚实的边界写在 README 里：整包响应缓存在内存里，只监听回环地址", en: "Honest limits, written down: responses are buffered whole in memory, and it binds loopback only" }
-    ]},
+    ]
+  },
   {
     id: "scheduled-backup",
     name: "scheduled-backup",
@@ -436,7 +448,8 @@ const PROJECTS = [
       { zh: "历史页签：待提交变更、commit 日志、每个 commit 的文件列表", en: "A history tab: pending changes, commit log, and per-commit file lists" },
       { zh: "提交信息按改动大小分级：{Init} / [Update] / (Fix)", en: "Commit messages graded by magnitude: {Init} / [Update] / (Fix)" },
       { zh: "README 认真写了没有 root 权限的 Linux 上打包 Qt 6 的真实路径，以及静态 Qt 和 AppImage 单文件两条路", en: "The README documents the real no-root Qt 6 packaging path on Linux, plus the static-Qt and AppImage single-file routes" }
-    ]},
+    ]
+  },
   {
     id: "toolbox",
     name: "toolbox",
@@ -460,7 +473,8 @@ const PROJECTS = [
       { zh: "五种工具类型：service / webapp / desktop / android / document", en: "Five tool types: service, webapp, desktop, android, document" },
       { zh: "进程五态（Stopped / Starting / Running / Detached / Failed）、实时 PID、滚动日志、异步 TCP 健康探测", en: "Five process states (Stopped / Starting / Running / Detached / Failed), live PID, rolling log tail, async TCP health probes" },
       { zh: "自带一份 AGENTS.md，把提交信息规范写成 AI 代理也能照做的约定", en: "Ships an AGENTS.md that states the commit conventions as rules an AI agent can follow" }
-    ]},
+    ]
+  },
   {
     id: "whwd",
     name: "whwd",
@@ -484,7 +498,8 @@ const PROJECTS = [
       { zh: "通过 Windows Update 的 IUpdateSearcher 列出驱动，源适配器藏在统一的 C 接口后面", en: "Lists drivers through Windows Update's IUpdateSearcher, with source adapters behind a uniform C interface" },
       { zh: "x86 上用 v141_xp 工具集仍能编译出支持 Windows XP SP3 的版本，Win7 SP1 及以上则是另一套目标", en: "An x86 build still targets Windows XP SP3 via the v141_xp toolset, with Win7 SP1 and above as the other target" },
       { zh: "JSON 是 CLI 和 GUI 之间的契约：命令行和 Win32 ListView 界面跑的是同一套核心代码", en: "JSON is the contract between CLI and GUI: the console tool and the Win32 ListView front end run identical core code" }
-    ]},
+    ]
+  },
   {
     id: "task-roulette",
     name: "task-roulette",
@@ -508,5 +523,6 @@ const PROJECTS = [
       { zh: "内嵌网页 UI，同一局域网的手机上也能打开", en: "An embedded web UI, reachable from your phone on the same LAN" },
       { zh: "想换就 reroll，覆写会写进当日文件", en: "Reroll if you disagree — the override is written to a per-day file" },
       { zh: "默认端口 29810 来自字符 \"tr\" 的两个 ASCII 码", en: "The default port 29810 comes from the ASCII bytes of \"tr\"" }
-    ]},
+    ]
+  }
 ];
