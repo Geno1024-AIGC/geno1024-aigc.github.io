@@ -14,7 +14,7 @@ const SITE = {
   about: {
     title: { zh: "关于", en: "About" },
     lead: {
-      zh: "这些项目大多是给自己用的工具：手机上没现成 app 就写一个，某个格式没工具能看就自己解析一个。换来的是一堆「刚好够用、而且完全知道它为什么这样写」的代码。",
+      zh: "这些项目大多是给自己用的工具：手机上没现成 app 就写一个，某个格式没工具能看就自己解析一个。换来的是一堆“刚好够用、而且完全知道它为什么这样写”的代码。",
       en: "Most of these are tools built for myself: when no app existed on Android, I wrote one; when no tool could open a format, I wrote the parser. What I got in return is a pile of code that is just good enough — and that I understand line by line."
     },
     principles: [
@@ -30,7 +30,7 @@ const SITE = {
         zh: "能用但不装作能用",
         en: "Works, but doesn't pretend to",
         body: {
-          zh: "每个项目的 README 都有一节「已知限制」。模拟的解释器就说自己是模拟的，纯内存缓冲就说清楚整包缓存在内存里。",
+          zh: "每个项目的 README 都有一节“已知限制”。模拟的解释器就说自己是模拟的，纯内存缓冲就说清楚整包缓存在内存里。",
           en: "Every README carries a limitations section. The simulated interpreter says it is simulated; the in-memory buffer says the response is held whole in memory."
         }
       },
@@ -46,7 +46,7 @@ const SITE = {
         zh: "把过程留在仓库里",
         en: "Leave the process in the repo",
         body: {
-          zh: "构建脚本和 CI 文件里塞满了「为什么这么绕」的注释：为什么不能用 GraalVM 构建、为什么要递归遍历 PE 导入表、为什么 manifest 要从 api.github.com 读。",
+          zh: "构建脚本和 CI 文件里塞满了“为什么这么绕”的注释：为什么不能用 GraalVM 构建、为什么要递归遍历 PE 导入表、为什么 manifest 要从 api.github.com 读。",
           en: "Build scripts and CI files are full of comments explaining the workaround: why not to build under GraalVM, why the PE import table is walked recursively, why release metadata must be read from api.github.com."
         }
       }
@@ -147,7 +147,7 @@ const PROJECTS = [
       { zh: "三个模块：app（Compose 界面）、git-core（683 行核心 API）、openpgp", en: "Three modules: app (Compose UI), git-core (a 683-line core API), and openpgp" },
       { zh: "自建 OpenPGP 层：密钥生成、钥匙串、ASCII armor、分离式签名，不捆绑任何 gpg 二进制", en: "Hand-rolled OpenPGP: keygen, keyrings, ASCII armoring and detached signatures without bundling a GPG binary" },
       { zh: "216 个单元测试覆盖 Git 核心，分布在 30 个测试文件里", en: "216 unit tests over the Git core, spread across 30 test files" },
-      { zh: "CI 会核对 APK 签名证书的 SHA-256，对不上就拒绝出包——这正是那种「绿灯但其实签错包」的失败", en: "CI verifies the built APK's signing-cert SHA-256 and refuses to ship on a mismatch — exactly the failure that otherwise looks like a green run" },
+      { zh: "CI 会核对 APK 签名证书的 SHA-256，对不上就拒绝出包——这正是那种“绿灯但其实签错包”的失败", en: "CI verifies the built APK's signing-cert SHA-256 and refuses to ship on a mismatch — exactly the failure that otherwise looks like a green run" },
       { zh: "约 16,700 行 Kotlin，这一组里最大的 Android 代码库", en: "~16,700 lines of Kotlin — the largest Android codebase in this collection" }
     ]
   },
@@ -186,7 +186,7 @@ const PROJECTS = [
     stack: ["Java 21", "Kotlin 2.4", "Gradle KTS", "JUnit 5"],
     loc: 4540, commits: 33, tests: 52, ci: true, updated: "2026-10-10",
     tagline: {
-      zh: "把 ZIP 的「压缩」和「打包」拆成两件事",
+      zh: "把 ZIP 的“压缩”和“打包”拆成两件事",
       en: "Splitting ZIP compression from ZIP assembly"
     },
     summary: {
@@ -246,7 +246,7 @@ const PROJECTS = [
     highlights: [
       { zh: "两种模式：本地 TCP 中继，以及等价于 ssh -R 的反向转发", en: "Two modes in one tool: a local TCP relay and an ssh -R-equivalent reverse forward" },
       { zh: "凭据与规则分开存（一份 SSH 登录可支撑多条规则），文件权限 0600", en: "Credentials are stored apart from rules — one SSH login backs many rules — both files at 0600" },
-      { zh: "支持密码 / ssh-agent / 私钥三种认证，并有「探测登录」接口在保存规则前先试一次", en: "Password, ssh-agent or private-key auth, plus a probe endpoint that tests a login before the rule is saved" },
+      { zh: "支持密码 / ssh-agent / 私钥三种认证，并有“探测登录”接口在保存规则前先试一次", en: "Password, ssh-agent or private-key auth, plus a probe endpoint that tests a login before the rule is saved" },
       { zh: "README 没写的还有自建中继：server / client 子命令走自定义的换行分隔 JSON 控制协议，按需建立数据连接", en: "Beyond the README: server / client subcommands relay over a custom newline-delimited JSON control protocol with on-demand data connections" },
       { zh: "28 个 Go 测试，其中包含一个跑在进程内的 SSH 测试服务器", en: "28 Go tests, including a real SSH test server running in-process" }
     ]
@@ -322,7 +322,7 @@ const PROJECTS = [
       { zh: "用 find -print0 | xargs -0 stat 流式扫描约 16.5 万个文件，并落一份 TSV 索引，重开就秒进", en: "Streams find -print0 | xargs -0 stat across ~165k files with an on-disk TSV index, so relaunching is instant" },
       { zh: "删一张图要连带 QQ 生成的 3–4 个同名变体，但只统计真实存在的那几个", en: "Deleting one image expands to QQ's 3–4 sibling variants — but only the files that actually existed get counted" },
       { zh: "内置更新器走 4 个可选镜像，但版本元数据永远从 api.github.com 读，镜像没法谎报版本", en: "The in-app updater pulls through 4 selectable mirrors, while release metadata is always read from api.github.com so a mirror can't spoof a version" },
-      { zh: "12 种 APK 安装失败码各自对应一条明确的 UI 提示，而不是一句「安装失败」", en: "Twelve distinct install-failure codes each map to their own UI message, instead of one generic 'install failed'" },
+      { zh: "12 种 APK 安装失败码各自对应一条明确的 UI 提示，而不是一句“安装失败”", en: "Twelve distinct install-failure codes each map to their own UI message, instead of one generic 'install failed'" },
       { zh: "零第三方库，连 JSON 解析器都是自己写的；因为每次读文件都要 fork su，用 Semaphore(4) 限制并发", en: "Zero third-party libraries — even the JSON parser is hand-rolled; a Semaphore(4) caps concurrency because every read forks su" }
     ]
   },
@@ -344,7 +344,7 @@ const PROJECTS = [
       en: "Seven frame styles with adjustable backgrounds, gradients, aspect ratios and margins, exported to JPEG / PNG. The preview and the export share one rendering path."
     },
     highlights: [
-      { zh: "「预览不是导出的近似——它就是导出，只是画得小一点」", en: "\"The preview is not an approximation of the export — it is the export, drawn smaller.\"" },
+      { zh: "“预览不是导出的近似——它就是导出，只是画得小一点”", en: "“The preview is not an approximation of the export — it is the export, drawn smaller.”" },
       { zh: "自己实现的可分离盒式模糊和叠加矩形阴影，保证输出不随 Android 版本漂移", en: "A hand-rolled separable box blur and stacked-rectangle shadows, chosen so output doesn't change between Android versions" },
       { zh: "README 里写下了 canary 更新的威胁模型：清单被投毒也只能让更新失败，装不上别人的包——因为 Android 拒绝不同签名的更新", en: "The README reasons through the canary-updater threat model: a poisoned manifest can only fail the update, never install a foreign APK, because Android refuses a differently-signed update" },
       { zh: "CI 真的跑 testDebugUnitTest 和 lintDebug 并当门禁用，不是只 assemble 一下", en: "CI actually runs testDebugUnitTest and lintDebug as gates, rather than just assembling" },
@@ -393,7 +393,7 @@ const PROJECTS = [
       en: "A step debugger for JavaScript that runs entirely client-side. acorn parses; a hand-written AST interpreter executes statement by statement. No Node process, no CDP, no server — breakpoints, call stack and scope variables all live in the page."
     },
     highlights: [
-      { zh: "异步协程解释器：每个 AST 节点都是 await 的，这才使得「在任意语句处暂停」成为可能", en: "An async coroutine interpreter — every node is awaited, which is what makes pausing at an arbitrary statement possible" },
+      { zh: "异步协程解释器：每个 AST 节点都是 await 的，这才使得“在任意语句处暂停”成为可能", en: "An async coroutine interpreter — every node is awaited, which is what makes pausing at an arbitrary statement possible" },
       { zh: "return / break / continue 靠抛哨兵对象跨 await 传递，不会被吞掉", en: "return / break / continue propagate as thrown sentinel objects, safe across await boundaries" },
       { zh: "重写了 map / filter / forEach / reduce / some / every / find / findIndex / sort，回调能单步进去", en: "Reimplemented map / filter / forEach / reduce / some / every / find / findIndex / sort so callbacks are steppable" },
       { zh: "内置 _opCount 指令上限，脚本跑飞时报错，而不是把标签页卡死", en: "A built-in _opCount cap errors out on a pathological script instead of freezing the tab" },
@@ -522,7 +522,7 @@ const PROJECTS = [
       { zh: "零依赖：net/http + go:embed + crypto/sha256，Linux / Windows / macOS 一个文件", en: "Zero dependencies: net/http + go:embed + crypto/sha256; one binary for Linux, Windows and macOS" },
       { zh: "内嵌网页 UI，同一局域网的手机上也能打开", en: "An embedded web UI, reachable from your phone on the same LAN" },
       { zh: "想换就 reroll，覆写会写进当日文件", en: "Reroll if you disagree — the override is written to a per-day file" },
-      { zh: "默认端口 29810 来自字符 \"tr\" 的两个 ASCII 码", en: "The default port 29810 comes from the ASCII bytes of \"tr\"" }
+      { zh: "默认端口 29810 来自字符 “tr” 的两个 ASCII 码", en: "The default port 29810 comes from the ASCII bytes of “tr”" }
     ]
   }
 ];
