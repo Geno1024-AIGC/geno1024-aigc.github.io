@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>qqfm · Geno1024-AIGC</title>
+<meta name="description" content="A gallery for images cached inside Tencent QQ">
+<meta property="og:title" content="qqfm · Geno1024-AIGC">
+<meta property="og:description" content="A gallery for images cached inside Tencent QQ">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%230b0d10'/><text x='50%25' y='55%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-size='34' font-weight='700' fill='%235eead4'>G</text></svg>">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body data-title-en="qqfm · Geno1024-AIGC">
+<div class="bg-grid" aria-hidden="true"></div>
+<div class="bg-glow" aria-hidden="true"></div>
+
+<header class="site-header">
+  <a class="brand" href="../index.html">
+    <span class="brand-mark">G</span>
+    <span class="brand-text">Geno1024<span class="brand-dim">-AIGC</span></span>
+  </a>
+  <nav class="site-nav">
+    <a href="../index.html" data-nav="projects" class="active" data-en="Projects">项目</a>
+    <a href="../about.html" data-nav="about" data-en="About">关于</a>
+    <button id="lang-toggle" type="button" aria-label="Switch language">
+      <span class="lang-opt" data-lang-opt="zh">中</span>
+      <span class="lang-sep"></span>
+      <span class="lang-opt" data-lang-opt="en">EN</span>
+    </button>
+  </nav>
+</header>
+
+<main>
+<div class="detail fade-in">
+<a class="back-link" href="../index.html"><span aria-hidden="true">&larr;</span><span data-en="Back to all projects">返回全部项目</span></a>
+<h1>qqfm</h1>
+<p class="detail-tagline" data-en="A gallery for images cached inside Tencent QQ">QQ 缓存图片的相册</p>
+<a class="detail-repo" href="https://github.com/Geno1024-AIGC/qqfm" target="_blank" rel="noopener">Geno1024-AIGC/qqfm &nbsp;&nearr;</a>
+<div class="detail-block"><h2 class="section-label" data-en="What it is">这是什么</h2><p class="detail-summary" data-en="Browse, view and bulk-delete the images Tencent QQ caches in its private directory. Because /Android/data is unreadable on Android 11+, every file operation goes through a root shell.">浏览、查看、批量删除腾讯 QQ 私有目录里缓存的图片。因为 /Android/data 在 Android 11 以后读不到，所有文件操作都走 root shell。</p></div>
+<div class="detail-block"><h2 class="section-label" data-en="Highlights">实现要点</h2><ul class="points"><li data-en="Streams find -print0 | xargs -0 stat across ~165k files with an on-disk TSV index, so relaunching is instant">用 find -print0 | xargs -0 stat 流式扫描约 16.5 万个文件，并落一份 TSV 索引，重开就秒进</li><li data-en="Deleting one image expands to QQ&#x27;s 3–4 sibling variants — but only the files that actually existed get counted">删一张图要连带 QQ 生成的 3–4 个同名变体，但只统计真实存在的那几个</li><li data-en="The in-app updater pulls through 4 selectable mirrors, while release metadata is always read from api.github.com so a mirror can&#x27;t spoof a version">内置更新器走 4 个可选镜像，但版本元数据永远从 api.github.com 读，镜像没法谎报版本</li><li data-en="Twelve distinct install-failure codes each map to their own UI message, instead of one generic &#x27;install failed&#x27;">12 种 APK 安装失败码各自对应一条明确的 UI 提示，而不是一句“安装失败”</li><li data-en="Zero third-party libraries — even the JSON parser is hand-rolled; a Semaphore(4) caps concurrency because every read forks su">零第三方库，连 JSON 解析器都是自己写的；因为每次读文件都要 fork su，用 Semaphore(4) 限制并发</li></ul></div>
+<div class="detail-block"><h2 class="section-label" data-en="Stack">技术栈</h2><div class="chip-row"><span class="stack-chip">Kotlin</span><span class="stack-chip">Jetpack Compose</span><span class="stack-chip">Gradle KTS</span><span class="stack-chip">零第三方库</span></div></div>
+<div class="detail-block"><h2 class="section-label" data-en="Engineering">工程指标</h2><div class="metrics"><div class="metric"><div class="metric-val">3,573</div><div class="metric-key" data-en="Lines">代码行数</div></div><div class="metric"><div class="metric-val">25</div><div class="metric-key" data-en="Commits">提交</div></div><div class="metric"><div class="metric-val off" data-en="No">无</div><div class="metric-key" data-en="Tests">测试</div></div><div class="metric"><div class="metric-val on" data-en="Yes">已接入</div><div class="metric-key" data-en="CI">持续集成</div></div><div class="metric"><div class="metric-val" data-en="2026/10/10">2026-10-10</div><div class="metric-key" data-en="Updated">最后更新</div></div></div></div>
+<div class="detail-block"><h2 class="section-label" data-en="AI token usage">AI Token 用量</h2><div class="metrics tokens"><div class="metric"><div class="metric-val tok">3,043,121</div><div class="metric-key" data-en="Input">输入</div></div><div class="metric"><div class="metric-val tok">185,770</div><div class="metric-key" data-en="Output">输出</div></div><div class="metric"><div class="metric-val tok">91,026</div><div class="metric-key" data-en="Reasoning">推理</div></div><div class="metric"><div class="metric-val tok">36,366,004</div><div class="metric-key" data-en="Cache read">缓存读</div></div><div class="metric"><div class="metric-val tok">0</div><div class="metric-key" data-en="Cache write">缓存写</div></div><div class="metric"><div class="metric-val tok">3,319,917</div><div class="metric-key" data-en="Fresh">非缓存</div></div><div class="metric"><div class="metric-val tok">39,685,921</div><div class="metric-key" data-en="Total">合计</div></div></div></div>
+<div class="detail-block"><h2 class="section-label" data-en="Tags">标签</h2><div class="chip-row"><span class="stack-chip" data-en="Android">Android</span></div></div>
+<div class="detail-nav"><a href="qrcode-step-reader.html"><small data-en="Previous">上一个</small>qrcode-step-reader</a><a class="next" href="picture-frame-android.html"><small data-en="Next">下一个</small>picture-frame-android</a></div>
+</div>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <p class="footer-note" data-en="Written entirely by AI · 0% human code · mostly personal tools">全部由 AI 写成 · 0% 人工代码 · 大部分为个人自用工具</p>
+    <div class="footer-links">
+      <a href="https://github.com/Geno1024-AIGC" target="_blank" rel="noopener">GitHub org</a>
+      <span class="footer-dot"></span>
+      <span class="footer-stats">16 · 78,994 LOC · 995 commits · 1.82B tok</span>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/app.js"></script>
+</body>
+</html>

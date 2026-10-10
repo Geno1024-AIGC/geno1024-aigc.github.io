@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>task-roulette · Geno1024-AIGC</title>
+<meta name="description" content="Picks one project for you, every day">
+<meta property="og:title" content="task-roulette · Geno1024-AIGC">
+<meta property="og:description" content="Picks one project for you, every day">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%230b0d10'/><text x='50%25' y='55%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-size='34' font-weight='700' fill='%235eead4'>G</text></svg>">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body data-title-en="task-roulette · Geno1024-AIGC">
+<div class="bg-grid" aria-hidden="true"></div>
+<div class="bg-glow" aria-hidden="true"></div>
+
+<header class="site-header">
+  <a class="brand" href="../index.html">
+    <span class="brand-mark">G</span>
+    <span class="brand-text">Geno1024<span class="brand-dim">-AIGC</span></span>
+  </a>
+  <nav class="site-nav">
+    <a href="../index.html" data-nav="projects" class="active" data-en="Projects">项目</a>
+    <a href="../about.html" data-nav="about" data-en="About">关于</a>
+    <button id="lang-toggle" type="button" aria-label="Switch language">
+      <span class="lang-opt" data-lang-opt="zh">中</span>
+      <span class="lang-sep"></span>
+      <span class="lang-opt" data-lang-opt="en">EN</span>
+    </button>
+  </nav>
+</header>
+
+<main>
+<div class="detail fade-in">
+<a class="back-link" href="../index.html"><span aria-hidden="true">&larr;</span><span data-en="Back to all projects">返回全部项目</span></a>
+<h1>task-roulette</h1>
+<p class="detail-tagline" data-en="Picks one project for you, every day">每天帮你选一个项目</p>
+<a class="detail-repo" href="https://github.com/Geno1024-AIGC/task-roulette" target="_blank" rel="noopener">Geno1024-AIGC/task-roulette &nbsp;&nearr;</a>
+<div class="detail-block"><h2 class="section-label" data-en="What it is">这是什么</h2><p class="detail-summary" data-en="A ~900-line, zero-dependency Go tool. sha256(date) % len(projects) decides today&#x27;s pick — the same day yields the same answer on any machine, with no server involved.">约 900 行、零依赖的 Go 工具。用 sha256(日期) % 项目数 决定今天做哪个——同一天在任何机器上都是同一个结果，不需要服务器参与。</p></div>
+<div class="detail-block"><h2 class="section-label" data-en="Highlights">实现要点</h2><ul class="points"><li data-en="Selection is purely deterministic: same day, same project list, same answer">选择是纯确定性的：同一天、同一批项目，永远是同一个结果</li><li data-en="Zero dependencies: net/http + go:embed + crypto/sha256; one binary for Linux, Windows and macOS">零依赖：net/http + go:embed + crypto/sha256，Linux / Windows / macOS 一个文件</li><li data-en="An embedded web UI, reachable from your phone on the same LAN">内嵌网页 UI，同一局域网的手机上也能打开</li><li data-en="Reroll if you disagree — the override is written to a per-day file">想换就 reroll，覆写会写进当日文件</li><li data-en="The default port 29810 comes from the ASCII bytes of “tr”">默认端口 29810 来自字符 “tr” 的两个 ASCII 码</li></ul></div>
+<div class="detail-block"><h2 class="section-label" data-en="Stack">技术栈</h2><div class="chip-row"><span class="stack-chip">Go 1.22</span><span class="stack-chip">纯标准库</span><span class="stack-chip">go:embed</span></div></div>
+<div class="detail-block"><h2 class="section-label" data-en="Engineering">工程指标</h2><div class="metrics"><div class="metric"><div class="metric-val">927</div><div class="metric-key" data-en="Lines">代码行数</div></div><div class="metric"><div class="metric-val">17</div><div class="metric-key" data-en="Commits">提交</div></div><div class="metric"><div class="metric-val">2</div><div class="metric-key" data-en="Tests">测试</div></div><div class="metric"><div class="metric-val on" data-en="Yes">已接入</div><div class="metric-key" data-en="CI">持续集成</div></div><div class="metric"><div class="metric-val" data-en="2026/08/16">2026-08-16</div><div class="metric-key" data-en="Updated">最后更新</div></div></div></div>
+<div class="detail-block"><h2 class="section-label" data-en="AI token usage">AI Token 用量</h2><div class="metrics tokens"><div class="metric"><div class="metric-val tok">130,444</div><div class="metric-key" data-en="Input">输入</div></div><div class="metric"><div class="metric-val tok">54,359</div><div class="metric-key" data-en="Output">输出</div></div><div class="metric"><div class="metric-val tok">0</div><div class="metric-key" data-en="Reasoning">推理</div></div><div class="metric"><div class="metric-val tok">3,089,152</div><div class="metric-key" data-en="Cache read">缓存读</div></div><div class="metric"><div class="metric-val tok">0</div><div class="metric-key" data-en="Cache write">缓存写</div></div><div class="metric"><div class="metric-val tok">184,803</div><div class="metric-key" data-en="Fresh">非缓存</div></div><div class="metric"><div class="metric-val tok">3,273,955</div><div class="metric-key" data-en="Total">合计</div></div></div></div>
+<div class="detail-block"><h2 class="section-label" data-en="Tags">标签</h2><div class="chip-row"><span class="stack-chip" data-en="CLI">命令行</span><span class="stack-chip" data-en="Web">Web</span></div></div>
+<div class="detail-nav"><a href="whwd.html"><small data-en="Previous">上一个</small>whwd</a></div>
+</div>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <p class="footer-note" data-en="Written entirely by AI · 0% human code · mostly personal tools">全部由 AI 写成 · 0% 人工代码 · 大部分为个人自用工具</p>
+    <div class="footer-links">
+      <a href="https://github.com/Geno1024-AIGC" target="_blank" rel="noopener">GitHub org</a>
+      <span class="footer-dot"></span>
+      <span class="footer-stats">16 · 78,994 LOC · 995 commits · 1.82B tok</span>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/app.js"></script>
+</body>
+</html>

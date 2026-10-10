@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>adbd-tcp · Geno1024-AIGC</title>
+<meta name="description" content="Wireless ADB for a rooted phone, no cable required">
+<meta property="og:title" content="adbd-tcp · Geno1024-AIGC">
+<meta property="og:description" content="Wireless ADB for a rooted phone, no cable required">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%230b0d10'/><text x='50%25' y='55%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-size='34' font-weight='700' fill='%235eead4'>G</text></svg>">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body data-title-en="adbd-tcp · Geno1024-AIGC">
+<div class="bg-grid" aria-hidden="true"></div>
+<div class="bg-glow" aria-hidden="true"></div>
+
+<header class="site-header">
+  <a class="brand" href="../index.html">
+    <span class="brand-mark">G</span>
+    <span class="brand-text">Geno1024<span class="brand-dim">-AIGC</span></span>
+  </a>
+  <nav class="site-nav">
+    <a href="../index.html" data-nav="projects" class="active" data-en="Projects">项目</a>
+    <a href="../about.html" data-nav="about" data-en="About">关于</a>
+    <button id="lang-toggle" type="button" aria-label="Switch language">
+      <span class="lang-opt" data-lang-opt="zh">中</span>
+      <span class="lang-sep"></span>
+      <span class="lang-opt" data-lang-opt="en">EN</span>
+    </button>
+  </nav>
+</header>
+
+<main>
+<div class="detail fade-in">
+<a class="back-link" href="../index.html"><span aria-hidden="true">&larr;</span><span data-en="Back to all projects">返回全部项目</span></a>
+<h1>adbd-tcp</h1>
+<p class="detail-tagline" data-en="Wireless ADB for a rooted phone, no cable required">让手机开启无线 ADB，从此不用插数据线</p>
+<a class="detail-repo" href="https://github.com/Geno1024-AIGC/adbd-tcp" target="_blank" rel="noopener">Geno1024-AIGC/adbd-tcp &nbsp;&nearr;</a>
+<div class="detail-block"><h2 class="section-label" data-en="What it is">这是什么</h2><p class="detail-summary" data-en="A tiny rooted-Android utility: it sets service.adb.tcp.port and drives the adbd service via setprop ctl.start / ctl.stop, turning the phone into a wireless-debuggable ADB target.">一个极小的 Android 应用：用 root 设置 service.adb.tcp.port，再用 setprop ctl.start / ctl.stop 控制 adbd 服务，把手机变成可以无线连接的 ADB 设备。</p></div>
+<div class="detail-block"><h2 class="section-label" data-en="Highlights">实现要点</h2><ul class="points"><li data-en="Zero dependencies: no AndroidX, no UI toolkit — one Activity, one layout">零依赖：不用 AndroidX、不用任何 UI 框架，一个 Activity 加一个布局就完了</li><li data-en="A 146-line MainActivity; every su -c call runs on a worker thread">146 行的 MainActivity，所有 su -c 调用都放在后台线程上</li><li data-en="Reads back the live status of both the port property and the service; the port is persisted in SharedPreferences">实时读回 service.adb.tcp.port 与 init.svc.adbd 的状态，端口号持久化到 SharedPreferences</li><li data-en="GitHub Actions builds an 892 KB debug APK on every push and uploads it as an artifact">GitHub Actions 每次 push 构建一个 892 KB 的 debug APK 并传成 artifact</li></ul></div>
+<div class="detail-block"><h2 class="section-label" data-en="Stack">技术栈</h2><div class="chip-row"><span class="stack-chip">Java</span><span class="stack-chip">Android Platform APIs</span><span class="stack-chip">Gradle KTS</span><span class="stack-chip">零依赖</span></div></div>
+<div class="detail-block"><h2 class="section-label" data-en="Engineering">工程指标</h2><div class="metrics"><div class="metric"><div class="metric-val">214</div><div class="metric-key" data-en="Lines">代码行数</div></div><div class="metric"><div class="metric-val">10</div><div class="metric-key" data-en="Commits">提交</div></div><div class="metric"><div class="metric-val off" data-en="No">无</div><div class="metric-key" data-en="Tests">测试</div></div><div class="metric"><div class="metric-val on" data-en="Yes">已接入</div><div class="metric-key" data-en="CI">持续集成</div></div><div class="metric"><div class="metric-val" data-en="2026/08/30">2026-08-30</div><div class="metric-key" data-en="Updated">最后更新</div></div></div></div>
+<div class="detail-block"><h2 class="section-label" data-en="AI token usage">AI Token 用量</h2><div class="metrics tokens"><div class="metric"><div class="metric-val tok">148,581</div><div class="metric-key" data-en="Input">输入</div></div><div class="metric"><div class="metric-val tok">41,110</div><div class="metric-key" data-en="Output">输出</div></div><div class="metric"><div class="metric-val tok">0</div><div class="metric-key" data-en="Reasoning">推理</div></div><div class="metric"><div class="metric-val tok">4,116,736</div><div class="metric-key" data-en="Cache read">缓存读</div></div><div class="metric"><div class="metric-val tok">0</div><div class="metric-key" data-en="Cache write">缓存写</div></div><div class="metric"><div class="metric-val tok">189,691</div><div class="metric-key" data-en="Fresh">非缓存</div></div><div class="metric"><div class="metric-val tok">4,306,427</div><div class="metric-key" data-en="Total">合计</div></div></div></div>
+<div class="detail-block"><h2 class="section-label" data-en="Tags">标签</h2><div class="chip-row"><span class="stack-chip" data-en="Android">Android</span><span class="stack-chip" data-en="Tooling">工具</span></div></div>
+<div class="detail-nav"><a href="picture-frame-android.html"><small data-en="Previous">上一个</small>picture-frame-android</a><a class="next" href="nodejs-step-executor.html"><small data-en="Next">下一个</small>nodejs-step-executor</a></div>
+</div>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <p class="footer-note" data-en="Written entirely by AI · 0% human code · mostly personal tools">全部由 AI 写成 · 0% 人工代码 · 大部分为个人自用工具</p>
+    <div class="footer-links">
+      <a href="https://github.com/Geno1024-AIGC" target="_blank" rel="noopener">GitHub org</a>
+      <span class="footer-dot"></span>
+      <span class="footer-stats">16 · 78,994 LOC · 995 commits · 1.82B tok</span>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/app.js"></script>
+</body>
+</html>

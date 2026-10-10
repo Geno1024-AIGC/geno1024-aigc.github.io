@@ -37,6 +37,8 @@ body {
 
 a { color: inherit; text-decoration: none; }
 
+[hidden] { display: none !important; }
+
 ::selection { background: rgba(94, 234, 212, 0.28); }
 
 /* ---------- ambient background ---------- */
@@ -551,7 +553,11 @@ main {
 
 .metric-val.on { color: var(--accent); }
 .metric-val.off { color: var(--text-3); }
+.metric-val.tok { font-size: 15px; letter-spacing: -0.2px; }
 .metric-key { font-size: 12px; color: var(--text-3); }
+
+.metrics.tokens { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+.metrics.tokens .metric { padding: 14px; }
 
 .points { margin: 0; padding: 0; list-style: none; max-width: 760px; }
 

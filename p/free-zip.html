@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>free-zip · Geno1024-AIGC</title>
+<meta name="description" content="Splitting ZIP compression from ZIP assembly">
+<meta property="og:title" content="free-zip · Geno1024-AIGC">
+<meta property="og:description" content="Splitting ZIP compression from ZIP assembly">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%230b0d10'/><text x='50%25' y='55%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-size='34' font-weight='700' fill='%235eead4'>G</text></svg>">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body data-title-en="free-zip · Geno1024-AIGC">
+<div class="bg-grid" aria-hidden="true"></div>
+<div class="bg-glow" aria-hidden="true"></div>
+
+<header class="site-header">
+  <a class="brand" href="../index.html">
+    <span class="brand-mark">G</span>
+    <span class="brand-text">Geno1024<span class="brand-dim">-AIGC</span></span>
+  </a>
+  <nav class="site-nav">
+    <a href="../index.html" data-nav="projects" class="active" data-en="Projects">项目</a>
+    <a href="../about.html" data-nav="about" data-en="About">关于</a>
+    <button id="lang-toggle" type="button" aria-label="Switch language">
+      <span class="lang-opt" data-lang-opt="zh">中</span>
+      <span class="lang-sep"></span>
+      <span class="lang-opt" data-lang-opt="en">EN</span>
+    </button>
+  </nav>
+</header>
+
+<main>
+<div class="detail fade-in">
+<a class="back-link" href="../index.html"><span aria-hidden="true">&larr;</span><span data-en="Back to all projects">返回全部项目</span></a>
+<h1>free-zip</h1>
+<p class="detail-tagline" data-en="Splitting ZIP compression from ZIP assembly">把 ZIP 的“压缩”和“打包”拆成两件事</p>
+<a class="detail-repo" href="https://github.com/Geno1024-AIGC/free-zip" target="_blank" rel="noopener">Geno1024-AIGC/free-zip &nbsp;&nearr;</a>
+<div class="detail-block"><h2 class="section-label" data-en="What it is">这是什么</h2><p class="detail-summary" data-en="A hand-written ZIP codec, implemented twice — once in Java, once in Kotlin — class for class. pack compresses each entry into an .lfh / .data / .cdfh triple; assemble degenerates to pure byte-copy, so one compressed payload can be re-assembled into many archives.">自己实现的 ZIP 编解码器，Java 和 Kotlin 各写了一份，类级别一一对应。pack 把每个条目压缩成 .lfh / .data / .cdfh 三件套，assemble 退化成纯字节拷贝——同一份压缩数据可以反复组装成不同的归档。</p></div>
+<div class="detail-block"><h2 class="section-label" data-en="Highlights">实现要点</h2><ul class="points"><li data-en="Written straight against APPNOTE.TXT, with the governing section cited in every code block">直接对着 APPNOTE.TXT 写，每段代码都标注了对应的规范小节</li><li data-en="The size subcommand computes an exact Content-Length without reading a single payload byte">size 子命令不读任何负载就能算出成品的精确 Content-Length</li><li data-en="edit mutates metadata as pure functions and never touches .data, so CRCs and sizes stay valid">edit 只改元数据、绝不碰 .data，CRC 和长度天然保持有效</li><li data-en="Zip64 with auto / always / never — never hard-fails rather than silently writing an unreadable archive">Zip64 支持 auto / always / never；选 never 时宁可硬失败，也不产出打不开的包</li><li data-en="Interop is verified in both directions; 52 JUnit tests run in CI, covering Zip64 overflow, over-long names and duplicate entries">Java 和 Kotlin 两边互相组装验证；52 个 JUnit 测试在 CI 里跑，含 Zip64 溢出、超长文件名、重复条目等加固用例</li></ul></div>
+<div class="detail-block"><h2 class="section-label" data-en="Stack">技术栈</h2><div class="chip-row"><span class="stack-chip">Java 21</span><span class="stack-chip">Kotlin 2.4</span><span class="stack-chip">Gradle KTS</span><span class="stack-chip">JUnit 5</span></div></div>
+<div class="detail-block"><h2 class="section-label" data-en="Engineering">工程指标</h2><div class="metrics"><div class="metric"><div class="metric-val">4,540</div><div class="metric-key" data-en="Lines">代码行数</div></div><div class="metric"><div class="metric-val">33</div><div class="metric-key" data-en="Commits">提交</div></div><div class="metric"><div class="metric-val">52</div><div class="metric-key" data-en="Tests">测试</div></div><div class="metric"><div class="metric-val on" data-en="Yes">已接入</div><div class="metric-key" data-en="CI">持续集成</div></div><div class="metric"><div class="metric-val" data-en="2026/10/10">2026-10-10</div><div class="metric-key" data-en="Updated">最后更新</div></div></div></div>
+<div class="detail-block"><h2 class="section-label" data-en="AI token usage">AI Token 用量</h2><div class="metrics tokens"><div class="metric"><div class="metric-val tok">1,060,483</div><div class="metric-key" data-en="Input">输入</div></div><div class="metric"><div class="metric-val tok">153,599</div><div class="metric-key" data-en="Output">输出</div></div><div class="metric"><div class="metric-val tok">74,449</div><div class="metric-key" data-en="Reasoning">推理</div></div><div class="metric"><div class="metric-val tok">18,068,864</div><div class="metric-key" data-en="Cache read">缓存读</div></div><div class="metric"><div class="metric-val tok">0</div><div class="metric-key" data-en="Cache write">缓存写</div></div><div class="metric"><div class="metric-val tok">1,288,531</div><div class="metric-key" data-en="Fresh">非缓存</div></div><div class="metric"><div class="metric-val tok">19,357,395</div><div class="metric-key" data-en="Total">合计</div></div></div></div>
+<div class="detail-block"><h2 class="section-label" data-en="Tags">标签</h2><div class="chip-row"><span class="stack-chip" data-en="Library / spec">库 / 协议</span><span class="stack-chip" data-en="CLI">命令行</span></div></div>
+<div class="detail-nav"><a href="opencode-inspire.html"><small data-en="Previous">上一个</small>opencode-inspire</a><a class="next" href="home-erp.html"><small data-en="Next">下一个</small>home-erp</a></div>
+</div>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <p class="footer-note" data-en="Written entirely by AI · 0% human code · mostly personal tools">全部由 AI 写成 · 0% 人工代码 · 大部分为个人自用工具</p>
+    <div class="footer-links">
+      <a href="https://github.com/Geno1024-AIGC" target="_blank" rel="noopener">GitHub org</a>
+      <span class="footer-dot"></span>
+      <span class="footer-stats">16 · 78,994 LOC · 995 commits · 1.82B tok</span>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/app.js"></script>
+</body>
+</html>

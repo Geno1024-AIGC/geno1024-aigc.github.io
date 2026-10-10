@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>gits-android · Geno1024-AIGC</title>
+<meta name="description" content="A full Git client for Android">
+<meta property="og:title" content="gits-android · Geno1024-AIGC">
+<meta property="og:description" content="A full Git client for Android">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%230b0d10'/><text x='50%25' y='55%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-size='34' font-weight='700' fill='%235eead4'>G</text></svg>">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body data-title-en="gits-android · Geno1024-AIGC">
+<div class="bg-grid" aria-hidden="true"></div>
+<div class="bg-glow" aria-hidden="true"></div>
+
+<header class="site-header">
+  <a class="brand" href="../index.html">
+    <span class="brand-mark">G</span>
+    <span class="brand-text">Geno1024<span class="brand-dim">-AIGC</span></span>
+  </a>
+  <nav class="site-nav">
+    <a href="../index.html" data-nav="projects" class="active" data-en="Projects">项目</a>
+    <a href="../about.html" data-nav="about" data-en="About">关于</a>
+    <button id="lang-toggle" type="button" aria-label="Switch language">
+      <span class="lang-opt" data-lang-opt="zh">中</span>
+      <span class="lang-sep"></span>
+      <span class="lang-opt" data-lang-opt="en">EN</span>
+    </button>
+  </nav>
+</header>
+
+<main>
+<div class="detail fade-in">
+<a class="back-link" href="../index.html"><span aria-hidden="true">&larr;</span><span data-en="Back to all projects">返回全部项目</span></a>
+<h1>gits-android</h1>
+<p class="detail-tagline" data-en="A full Git client for Android">手机上的完整 Git 客户端</p>
+<a class="detail-repo" href="https://github.com/Geno1024-AIGC/gits-android" target="_blank" rel="noopener">Geno1024-AIGC/gits-android &nbsp;&nearr;</a>
+<div class="detail-block"><h2 class="section-label" data-en="What it is">这是什么</h2><p class="detail-summary" data-en="An Android Git client built on Eclipse JGit. Clone, fetch, stage, commit, stash, blame and diff all happen on-device, plus a hand-rolled OpenPGP layer used to sign commits.">基于 Eclipse JGit 的 Android Git 客户端。克隆、拉取、暂存、提交、储藏、blame 和 diff 全部在设备上完成，外加一层自己实现的 OpenPGP，用来给提交签名。</p></div>
+<div class="detail-block"><h2 class="section-label" data-en="Highlights">实现要点</h2><ul class="points"><li data-en="Three modules: app (Compose UI), git-core (a 683-line core API), and openpgp">三个模块：app（Compose 界面）、git-core（683 行核心 API）、openpgp</li><li data-en="Hand-rolled OpenPGP: keygen, keyrings, ASCII armoring and detached signatures without bundling a GPG binary">自建 OpenPGP 层：密钥生成、钥匙串、ASCII armor、分离式签名，不捆绑任何 gpg 二进制</li><li data-en="216 unit tests over the Git core, spread across 30 test files">216 个单元测试覆盖 Git 核心，分布在 30 个测试文件里</li><li data-en="CI verifies the built APK&#x27;s signing-cert SHA-256 and refuses to ship on a mismatch — exactly the failure that otherwise looks like a green run">CI 会核对 APK 签名证书的 SHA-256，对不上就拒绝出包——这正是那种“绿灯但其实签错包”的失败</li><li data-en="~16,700 lines of Kotlin — the largest Android codebase in this collection">约 16,700 行 Kotlin，这一组里最大的 Android 代码库</li></ul></div>
+<div class="detail-block"><h2 class="section-label" data-en="Stack">技术栈</h2><div class="chip-row"><span class="stack-chip">Kotlin 2.4</span><span class="stack-chip">Jetpack Compose</span><span class="stack-chip">Eclipse JGit</span><span class="stack-chip">BouncyCastle</span><span class="stack-chip">Gradle</span></div></div>
+<div class="detail-block"><h2 class="section-label" data-en="Engineering">工程指标</h2><div class="metrics"><div class="metric"><div class="metric-val">16,700</div><div class="metric-key" data-en="Lines">代码行数</div></div><div class="metric"><div class="metric-val">106</div><div class="metric-key" data-en="Commits">提交</div></div><div class="metric"><div class="metric-val">216</div><div class="metric-key" data-en="Tests">测试</div></div><div class="metric"><div class="metric-val on" data-en="Yes">已接入</div><div class="metric-key" data-en="CI">持续集成</div></div><div class="metric"><div class="metric-val" data-en="2026/10/10">2026-10-10</div><div class="metric-key" data-en="Updated">最后更新</div></div></div></div>
+<div class="detail-block"><h2 class="section-label" data-en="AI token usage">AI Token 用量</h2><div class="metrics tokens"><div class="metric"><div class="metric-val tok">11,659,966</div><div class="metric-key" data-en="Input">输入</div></div><div class="metric"><div class="metric-val tok">1,040,597</div><div class="metric-key" data-en="Output">输出</div></div><div class="metric"><div class="metric-val tok">1,537,597</div><div class="metric-key" data-en="Reasoning">推理</div></div><div class="metric"><div class="metric-val tok">277,772,137</div><div class="metric-key" data-en="Cache read">缓存读</div></div><div class="metric"><div class="metric-val tok">0</div><div class="metric-key" data-en="Cache write">缓存写</div></div><div class="metric"><div class="metric-val tok">14,238,160</div><div class="metric-key" data-en="Fresh">非缓存</div></div><div class="metric"><div class="metric-val tok">292,010,297</div><div class="metric-key" data-en="Total">合计</div></div></div></div>
+<div class="detail-block"><h2 class="section-label" data-en="Tags">标签</h2><div class="chip-row"><span class="stack-chip" data-en="Android">Android</span></div></div>
+<div class="detail-nav"><span class="spacer"></span><a class="next" href="opencode-inspire.html"><small data-en="Next">下一个</small>opencode-inspire</a></div>
+</div>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <p class="footer-note" data-en="Written entirely by AI · 0% human code · mostly personal tools">全部由 AI 写成 · 0% 人工代码 · 大部分为个人自用工具</p>
+    <div class="footer-links">
+      <a href="https://github.com/Geno1024-AIGC" target="_blank" rel="noopener">GitHub org</a>
+      <span class="footer-dot"></span>
+      <span class="footer-stats">16 · 78,994 LOC · 995 commits · 1.82B tok</span>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/app.js"></script>
+</body>
+</html>

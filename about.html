@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>关于 · Geno1024-AIGC</title>
+<meta name="description" content="This site and every project on it were written entirely by AI, with 0% human-written code. Most of them exist because nothing else did the job: no app on the phone to browse those images, no parser for that format. What came out is a pile of code that is just good enough — and that I can read line by line, though not one line of it was written by me.">
+<meta property="og:title" content="关于 · Geno1024-AIGC">
+<meta property="og:description" content="This site and every project on it were written entirely by AI, with 0% human-written code. Most of them exist because nothing else did the job: no app on the phone to browse those images, no parser for that format. What came out is a pile of code that is just good enough — and that I can read line by line, though not one line of it was written by me.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%230b0d10'/><text x='50%25' y='55%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-size='34' font-weight='700' fill='%235eead4'>G</text></svg>">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body data-title-en="About · Geno1024-AIGC">
+<div class="bg-grid" aria-hidden="true"></div>
+<div class="bg-glow" aria-hidden="true"></div>
+
+<header class="site-header">
+  <a class="brand" href="index.html">
+    <span class="brand-mark">G</span>
+    <span class="brand-text">Geno1024<span class="brand-dim">-AIGC</span></span>
+  </a>
+  <nav class="site-nav">
+    <a href="index.html" data-nav="projects" data-en="Projects">项目</a>
+    <a href="about.html" data-nav="about" class="active" data-en="About">关于</a>
+    <button id="lang-toggle" type="button" aria-label="Switch language">
+      <span class="lang-opt" data-lang-opt="zh">中</span>
+      <span class="lang-sep"></span>
+      <span class="lang-opt" data-lang-opt="en">EN</span>
+    </button>
+  </nav>
+</header>
+
+<main>
+<div class="about fade-in">
+<h1 data-en="About">关于</h1>
+<p class="about-lead" data-en="This site and every project on it were written entirely by AI, with 0% human-written code. Most of them exist because nothing else did the job: no app on the phone to browse those images, no parser for that format. What came out is a pile of code that is just good enough — and that I can read line by line, though not one line of it was written by me.">这个站点和它收录的项目全部由 AI 写成，0% 人工代码。它们大多是因为没有现成工具才诞生的：手机上没有能浏览这些图片的应用，某个格式没有能解析的工具。最后得到的是一堆“刚好够用”的代码——每一行人都能读明白，但没有一行是人写的。</p>
+<div class="principle-grid"><div class="principle"><h3 data-en="Start from the spec, not from a library">从规范写起，不从库开始</h3><p data-en="ZIP, PDF, QR, Zip64, CFF fonts — whenever a specification exists, the code is written straight against its section numbers, with class names borrowed from its vocabulary.">ZIP、PDF、二维码、ZIP64、CFF 字体——凡是手上有一份规范的地方，都直接对着规范的小节号写代码。每个类名尽量取自规范里的术语。</p></div><div class="principle"><h3 data-en="Works, but doesn&#x27;t pretend to">能用但不装作能用</h3><p data-en="Every README carries a limitations section. The simulated interpreter says it is simulated; the in-memory buffer says the response is held whole in memory.">每个项目的 README 都有一节“已知限制”。模拟的解释器就说自己是模拟的，纯内存缓冲就说清楚整包缓存在内存里。</p></div><div class="principle"><h3 data-en="Only what you computed yourself counts">自己算出来的才算数</h3><p data-en="The on-device QR decoder is cross-checked against ZXing before shipping; the AXF format makes three languages verify each other&#x27;s bytes; APK signing certificates are fingerprint-checked in CI.">手机上的二维码解码器要和 ZXing 交叉验证过才敢发；AXF 格式让三种语言互相校验字节；APK 的签名证书要在 CI 里核对指纹。</p></div><div class="principle"><h3 data-en="Leave the process in the repo">把过程留在仓库里</h3><p data-en="Build scripts and CI files are full of comments explaining the workaround: why not to build under GraalVM, why the PE import table is walked recursively, why release metadata must be read from api.github.com.">构建脚本和 CI 文件里塞满了“为什么这么绕”的注释：为什么不能用 GraalVM 构建、为什么要递归遍历 PE 导入表、为什么 manifest 要从 api.github.com 读。</p></div></div>
+<div class="detail-block"><h2 class="section-label" data-en="A few notes">几点说明</h2><ul class="notes"><li data-en="Figures come from an October 2026 snapshot of the repositories (line counts exclude vendored and generated code).">统计数字来自 2026-10 的仓库快照（代码行数不含 vendor 代码和生成物）。</li><li data-en="Versions are mostly 0.1.x: it runs, but the interface may still change.">版本号普遍是 0.1.x：意味着能跑、但接口还可能变。</li><li data-en="Most projects came out of single focused sprints, concentrated between August and October 2026.">项目基本是一次性冲刺做出来的，日期集中在 2026 年 8–10 月。</li></ul></div>
+</div>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <p class="footer-note" data-en="Written entirely by AI · 0% human code · mostly personal tools">全部由 AI 写成 · 0% 人工代码 · 大部分为个人自用工具</p>
+    <div class="footer-links">
+      <a href="https://github.com/Geno1024-AIGC" target="_blank" rel="noopener">GitHub org</a>
+      <span class="footer-dot"></span>
+      <span class="footer-stats">16 · 78,994 LOC · 995 commits · 1.82B tok</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/app.js"></script>
+</body>
+</html>

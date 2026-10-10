@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>port-forwarder · Geno1024-AIGC</title>
+<meta name="description" content="A TCP port forwarder with a web console">
+<meta property="og:title" content="port-forwarder · Geno1024-AIGC">
+<meta property="og:description" content="A TCP port forwarder with a web console">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%230b0d10'/><text x='50%25' y='55%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-size='34' font-weight='700' fill='%235eead4'>G</text></svg>">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body data-title-en="port-forwarder · Geno1024-AIGC">
+<div class="bg-grid" aria-hidden="true"></div>
+<div class="bg-glow" aria-hidden="true"></div>
+
+<header class="site-header">
+  <a class="brand" href="../index.html">
+    <span class="brand-mark">G</span>
+    <span class="brand-text">Geno1024<span class="brand-dim">-AIGC</span></span>
+  </a>
+  <nav class="site-nav">
+    <a href="../index.html" data-nav="projects" class="active" data-en="Projects">项目</a>
+    <a href="../about.html" data-nav="about" data-en="About">关于</a>
+    <button id="lang-toggle" type="button" aria-label="Switch language">
+      <span class="lang-opt" data-lang-opt="zh">中</span>
+      <span class="lang-sep"></span>
+      <span class="lang-opt" data-lang-opt="en">EN</span>
+    </button>
+  </nav>
+</header>
+
+<main>
+<div class="detail fade-in">
+<a class="back-link" href="../index.html"><span aria-hidden="true">&larr;</span><span data-en="Back to all projects">返回全部项目</span></a>
+<h1>port-forwarder</h1>
+<p class="detail-tagline" data-en="A TCP port forwarder with a web console">带网页控制台的 TCP 端口转发器</p>
+<a class="detail-repo" href="https://github.com/Geno1024-AIGC/port-forwarder" target="_blank" rel="noopener">Geno1024-AIGC/port-forwarder &nbsp;&nearr;</a>
+<div class="detail-block"><h2 class="section-label" data-en="What it is">这是什么</h2><p class="detail-summary" data-en="A single-binary TCP forwarding daemon whose management surface is an embedded web UI instead of a config file. Local relaying, plus reverse forwarding over stock sshd.">单文件 TCP 转发守护进程，管理界面是内嵌的网页而不是配置文件。除了本地正向转发，还支持基于普通 sshd 的反向转发。</p></div>
+<div class="detail-block"><h2 class="section-label" data-en="Highlights">实现要点</h2><ul class="points"><li data-en="Two modes in one tool: a local TCP relay and an ssh -R-equivalent reverse forward">两种模式：本地 TCP 中继，以及等价于 ssh -R 的反向转发</li><li data-en="Credentials are stored apart from rules — one SSH login backs many rules — both files at 0600">凭据与规则分开存（一份 SSH 登录可支撑多条规则），文件权限 0600</li><li data-en="Password, ssh-agent or private-key auth, plus a probe endpoint that tests a login before the rule is saved">支持密码 / ssh-agent / 私钥三种认证，并有“探测登录”接口在保存规则前先试一次</li><li data-en="Beyond the README: server / client subcommands relay over a custom newline-delimited JSON control protocol with on-demand data connections">README 没写的还有自建中继：server / client 子命令走自定义的换行分隔 JSON 控制协议，按需建立数据连接</li><li data-en="28 Go tests, including a real SSH test server running in-process">28 个 Go 测试，其中包含一个跑在进程内的 SSH 测试服务器</li></ul></div>
+<div class="detail-block"><h2 class="section-label" data-en="Stack">技术栈</h2><div class="chip-row"><span class="stack-chip">Go 1.25</span><span class="stack-chip">net/http</span><span class="stack-chip">golang.org/x/crypto</span><span class="stack-chip">embed</span></div></div>
+<div class="detail-block"><h2 class="section-label" data-en="Engineering">工程指标</h2><div class="metrics"><div class="metric"><div class="metric-val">5,002</div><div class="metric-key" data-en="Lines">代码行数</div></div><div class="metric"><div class="metric-val">33</div><div class="metric-key" data-en="Commits">提交</div></div><div class="metric"><div class="metric-val">28</div><div class="metric-key" data-en="Tests">测试</div></div><div class="metric"><div class="metric-val off" data-en="No">无</div><div class="metric-key" data-en="CI">持续集成</div></div><div class="metric"><div class="metric-val" data-en="2026/09/09">2026-09-09</div><div class="metric-key" data-en="Updated">最后更新</div></div></div></div>
+<div class="detail-block"><h2 class="section-label" data-en="AI token usage">AI Token 用量</h2><div class="metrics tokens"><div class="metric"><div class="metric-val tok">3,073,962</div><div class="metric-key" data-en="Input">输入</div></div><div class="metric"><div class="metric-val tok">336,631</div><div class="metric-key" data-en="Output">输出</div></div><div class="metric"><div class="metric-val tok">25,141</div><div class="metric-key" data-en="Reasoning">推理</div></div><div class="metric"><div class="metric-val tok">69,034,176</div><div class="metric-key" data-en="Cache read">缓存读</div></div><div class="metric"><div class="metric-val tok">0</div><div class="metric-key" data-en="Cache write">缓存写</div></div><div class="metric"><div class="metric-val tok">3,435,734</div><div class="metric-key" data-en="Fresh">非缓存</div></div><div class="metric"><div class="metric-val tok">72,469,910</div><div class="metric-key" data-en="Total">合计</div></div></div></div>
+<div class="detail-block"><h2 class="section-label" data-en="Tags">标签</h2><div class="chip-row"><span class="stack-chip" data-en="Server">服务</span><span class="stack-chip" data-en="CLI">命令行</span><span class="stack-chip" data-en="Web">Web</span></div></div>
+<div class="detail-nav"><a href="home-erp.html"><small data-en="Previous">上一个</small>home-erp</a><a class="next" href="pdf-extractor.html"><small data-en="Next">下一个</small>pdf-extractor</a></div>
+</div>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <p class="footer-note" data-en="Written entirely by AI · 0% human code · mostly personal tools">全部由 AI 写成 · 0% 人工代码 · 大部分为个人自用工具</p>
+    <div class="footer-links">
+      <a href="https://github.com/Geno1024-AIGC" target="_blank" rel="noopener">GitHub org</a>
+      <span class="footer-dot"></span>
+      <span class="footer-stats">16 · 78,994 LOC · 995 commits · 1.82B tok</span>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>pdf-extractor · Geno1024-AIGC</title>
+<meta name="description" content="A PDF internals browser and extractor">
+<meta property="og:title" content="pdf-extractor · Geno1024-AIGC">
+<meta property="og:description" content="A PDF internals browser and extractor">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%230b0d10'/><text x='50%25' y='55%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-size='34' font-weight='700' fill='%235eead4'>G</text></svg>">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body data-title-en="pdf-extractor · Geno1024-AIGC">
+<div class="bg-grid" aria-hidden="true"></div>
+<div class="bg-glow" aria-hidden="true"></div>
+
+<header class="site-header">
+  <a class="brand" href="../index.html">
+    <span class="brand-mark">G</span>
+    <span class="brand-text">Geno1024<span class="brand-dim">-AIGC</span></span>
+  </a>
+  <nav class="site-nav">
+    <a href="../index.html" data-nav="projects" class="active" data-en="Projects">项目</a>
+    <a href="../about.html" data-nav="about" data-en="About">关于</a>
+    <button id="lang-toggle" type="button" aria-label="Switch language">
+      <span class="lang-opt" data-lang-opt="zh">中</span>
+      <span class="lang-sep"></span>
+      <span class="lang-opt" data-lang-opt="en">EN</span>
+    </button>
+  </nav>
+</header>
+
+<main>
+<div class="detail fade-in">
+<a class="back-link" href="../index.html"><span aria-hidden="true">&larr;</span><span data-en="Back to all projects">返回全部项目</span></a>
+<h1>pdf-extractor</h1>
+<p class="detail-tagline" data-en="A PDF internals browser and extractor">PDF 内部结构浏览器与提取器</p>
+<a class="detail-repo" href="https://github.com/Geno1024-AIGC/pdf-extractor" target="_blank" rel="noopener">Geno1024-AIGC/pdf-extractor &nbsp;&nearr;</a>
+<div class="detail-block"><h2 class="section-label" data-en="What it is">这是什么</h2><p class="detail-summary" data-en="A PDF parsing tool in C++/Qt5. Deliberately not a renderer: it is an inspector that lays every object out for you.">C++ / Qt5 写的 PDF 解析工具。刻意不做渲染器——它是一个检查器：把每个对象摊开给你看。</p></div>
+<div class="detail-block"><h2 class="section-label" data-en="Highlights">实现要点</h2><ul class="points"><li data-en="Six tabs per object: structure tree, decoded text, hex dump, images, raw content operators, fonts">每个对象都有六个页签：结构树、解码文本、十六进制、图像、原始内容算子、字体</li><li data-en="A hand-written CFF / Type1C / CIDFontType0C font parser that disassembles each glyph&#x27;s Type 2 charstring program">手写的 CFF / Type1C / CIDFontType0C 字体解析器，能反汇编每个字形的 Type 2 charstring 程序</li><li data-en="Unpacks FlateDecode (with Predictor), ASCII85, ASCIIHex, RunLength and LZW; image streams pass through as raw bytes">解 FlateDecode（含 Predictor）、ASCII85、ASCIIHex、RunLength、LZW；图像流按原字节透传</li><li data-en="Seven CLI subcommands, plus a bilingual 中/English UI, drag-and-drop and recent files">7 个 CLI 子命令，加中英双语界面、拖放打开、最近文件</li><li data-en="Windows packaging recursively walks PE imports to bundle zlib, ICU and freetype, then runs the exe under cmd — which has no MinGW — to prove it&#x27;s self-contained">Windows 打包会递归遍历 PE 导入表补齐 zlib / ICU / freetype，然后在没有 MinGW 的 cmd 里跑一遍，证明确实自包含</li></ul></div>
+<div class="detail-block"><h2 class="section-label" data-en="Stack">技术栈</h2><div class="chip-row"><span class="stack-chip">C++17</span><span class="stack-chip">Qt 5 Widgets</span><span class="stack-chip">zlib</span><span class="stack-chip">CMake</span></div></div>
+<div class="detail-block"><h2 class="section-label" data-en="Engineering">工程指标</h2><div class="metrics"><div class="metric"><div class="metric-val">5,140</div><div class="metric-key" data-en="Lines">代码行数</div></div><div class="metric"><div class="metric-val">48</div><div class="metric-key" data-en="Commits">提交</div></div><div class="metric"><div class="metric-val">1</div><div class="metric-key" data-en="Tests">测试</div></div><div class="metric"><div class="metric-val on" data-en="Yes">已接入</div><div class="metric-key" data-en="CI">持续集成</div></div><div class="metric"><div class="metric-val" data-en="2026/10/07">2026-10-07</div><div class="metric-key" data-en="Updated">最后更新</div></div></div></div>
+<div class="detail-block"><h2 class="section-label" data-en="AI token usage">AI Token 用量</h2><div class="metrics tokens"><div class="metric"><div class="metric-val tok">4,087,408</div><div class="metric-key" data-en="Input">输入</div></div><div class="metric"><div class="metric-val tok">859,038</div><div class="metric-key" data-en="Output">输出</div></div><div class="metric"><div class="metric-val tok">23,716</div><div class="metric-key" data-en="Reasoning">推理</div></div><div class="metric"><div class="metric-val tok">152,712,000</div><div class="metric-key" data-en="Cache read">缓存读</div></div><div class="metric"><div class="metric-val tok">0</div><div class="metric-key" data-en="Cache write">缓存写</div></div><div class="metric"><div class="metric-val tok">4,970,162</div><div class="metric-key" data-en="Fresh">非缓存</div></div><div class="metric"><div class="metric-val tok">157,682,162</div><div class="metric-key" data-en="Total">合计</div></div></div></div>
+<div class="detail-block"><h2 class="section-label" data-en="Tags">标签</h2><div class="chip-row"><span class="stack-chip" data-en="Desktop">桌面</span><span class="stack-chip" data-en="Tooling">工具</span></div></div>
+<div class="detail-nav"><a href="port-forwarder.html"><small data-en="Previous">上一个</small>port-forwarder</a><a class="next" href="qrcode-step-reader.html"><small data-en="Next">下一个</small>qrcode-step-reader</a></div>
+</div>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <p class="footer-note" data-en="Written entirely by AI · 0% human code · mostly personal tools">全部由 AI 写成 · 0% 人工代码 · 大部分为个人自用工具</p>
+    <div class="footer-links">
+      <a href="https://github.com/Geno1024-AIGC" target="_blank" rel="noopener">GitHub org</a>
+      <span class="footer-dot"></span>
+      <span class="footer-stats">16 · 78,994 LOC · 995 commits · 1.82B tok</span>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>scheduled-backup · Geno1024-AIGC</title>
+<meta name="description" content="Turn any folder into a scheduled Git backup">
+<meta property="og:title" content="scheduled-backup · Geno1024-AIGC">
+<meta property="og:description" content="Turn any folder into a scheduled Git backup">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%230b0d10'/><text x='50%25' y='55%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-size='34' font-weight='700' fill='%235eead4'>G</text></svg>">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body data-title-en="scheduled-backup · Geno1024-AIGC">
+<div class="bg-grid" aria-hidden="true"></div>
+<div class="bg-glow" aria-hidden="true"></div>
+
+<header class="site-header">
+  <a class="brand" href="../index.html">
+    <span class="brand-mark">G</span>
+    <span class="brand-text">Geno1024<span class="brand-dim">-AIGC</span></span>
+  </a>
+  <nav class="site-nav">
+    <a href="../index.html" data-nav="projects" class="active" data-en="Projects">项目</a>
+    <a href="../about.html" data-nav="about" data-en="About">关于</a>
+    <button id="lang-toggle" type="button" aria-label="Switch language">
+      <span class="lang-opt" data-lang-opt="zh">中</span>
+      <span class="lang-sep"></span>
+      <span class="lang-opt" data-lang-opt="en">EN</span>
+    </button>
+  </nav>
+</header>
+
+<main>
+<div class="detail fade-in">
+<a class="back-link" href="../index.html"><span aria-hidden="true">&larr;</span><span data-en="Back to all projects">返回全部项目</span></a>
+<h1>scheduled-backup</h1>
+<p class="detail-tagline" data-en="Turn any folder into a scheduled Git backup">把任意文件夹变成定时 Git 备份</p>
+<a class="detail-repo" href="https://github.com/Geno1024-AIGC/scheduled-backup" target="_blank" rel="noopener">Geno1024-AIGC/scheduled-backup &nbsp;&nearr;</a>
+<div class="detail-block"><h2 class="section-label" data-en="What it is">这是什么</h2><p class="detail-summary" data-en="A tray-resident Qt client that runs git add → commit → push on an interval to a private GitHub or Gitee repo. A wizard handles first-run setup.">常驻系统托盘的 Qt 小工具，按间隔执行 git add → commit → push 到一个私有的 GitHub 或 Gitee 仓库。首次配置由向导弹导完成。</p></div>
+<div class="detail-block"><h2 class="section-label" data-en="Highlights">实现要点</h2><ul class="points"><li data-en="A wizard: pick a platform, one-click signup, mint a PAT, auto-create the private repo, write .gitignore, first push">向导弹导：选平台 → 一键注册 → 建 PAT → 自动创建私有仓库 → 生成 .gitignore → 首次推送</li><li data-en="Shells out to the system git; the token stays in a local credentials file and never enters the backup itself">直接 shell out 到系统的 git，token 留在本地凭据文件里，永远不会进备份内容</li><li data-en="A history tab: pending changes, commit log, and per-commit file lists">历史页签：待提交变更、commit 日志、每个 commit 的文件列表</li><li data-en="Commit messages graded by magnitude: {Init} / [Update] / (Fix)">提交信息按改动大小分级：{Init} / [Update] / (Fix)</li><li data-en="The README documents the real no-root Qt 6 packaging path on Linux, plus the static-Qt and AppImage single-file routes">README 认真写了没有 root 权限的 Linux 上打包 Qt 6 的真实路径，以及静态 Qt 和 AppImage 单文件两条路</li></ul></div>
+<div class="detail-block"><h2 class="section-label" data-en="Stack">技术栈</h2><div class="chip-row"><span class="stack-chip">C++17</span><span class="stack-chip">Qt 6 Widgets</span><span class="stack-chip">CMake</span><span class="stack-chip">系统 git</span></div></div>
+<div class="detail-block"><h2 class="section-label" data-en="Engineering">工程指标</h2><div class="metrics"><div class="metric"><div class="metric-val">2,907</div><div class="metric-key" data-en="Lines">代码行数</div></div><div class="metric"><div class="metric-val">10</div><div class="metric-key" data-en="Commits">提交</div></div><div class="metric"><div class="metric-val off" data-en="No">无</div><div class="metric-key" data-en="Tests">测试</div></div><div class="metric"><div class="metric-val off" data-en="No">无</div><div class="metric-key" data-en="CI">持续集成</div></div><div class="metric"><div class="metric-val" data-en="2026/08/13">2026-08-13</div><div class="metric-key" data-en="Updated">最后更新</div></div></div></div>
+<div class="detail-block"><h2 class="section-label" data-en="AI token usage">AI Token 用量</h2><div class="metrics tokens"><div class="metric"><div class="metric-val tok">256,135</div><div class="metric-key" data-en="Input">输入</div></div><div class="metric"><div class="metric-val tok">30,093</div><div class="metric-key" data-en="Output">输出</div></div><div class="metric"><div class="metric-val tok">23,978</div><div class="metric-key" data-en="Reasoning">推理</div></div><div class="metric"><div class="metric-val tok">2,400,000</div><div class="metric-key" data-en="Cache read">缓存读</div></div><div class="metric"><div class="metric-val tok">0</div><div class="metric-key" data-en="Cache write">缓存写</div></div><div class="metric"><div class="metric-val tok">310,206</div><div class="metric-key" data-en="Fresh">非缓存</div></div><div class="metric"><div class="metric-val tok">2,710,206</div><div class="metric-key" data-en="Total">合计</div></div></div></div>
+<div class="detail-block"><h2 class="section-label" data-en="Tags">标签</h2><div class="chip-row"><span class="stack-chip" data-en="Desktop">桌面</span></div></div>
+<div class="detail-nav"><a href="proxied-crawler.html"><small data-en="Previous">上一个</small>proxied-crawler</a><a class="next" href="toolbox.html"><small data-en="Next">下一个</small>toolbox</a></div>
+</div>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <p class="footer-note" data-en="Written entirely by AI · 0% human code · mostly personal tools">全部由 AI 写成 · 0% 人工代码 · 大部分为个人自用工具</p>
+    <div class="footer-links">
+      <a href="https://github.com/Geno1024-AIGC" target="_blank" rel="noopener">GitHub org</a>
+      <span class="footer-dot"></span>
+      <span class="footer-stats">16 · 78,994 LOC · 995 commits · 1.82B tok</span>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/app.js"></script>
+</body>
+</html>

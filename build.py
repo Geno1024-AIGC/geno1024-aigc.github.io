@@ -216,11 +216,15 @@ def detail_main(ctx, p, idx):
         metric_cell(plain_val(num(p["loc"])), ui["lines"]),
         metric_cell(plain_val(num(p["commits"])), ui["commits"]),
         metric_cell(
-            plain_val(num(p["tests"])) if p["tests"] > 0 else plain_val(T(ui["no"]), "off"),
+            plain_val(num(p["tests"]))
+            if p["tests"] > 0
+            else bi("div", ui["no"], cls="metric-val off"),
             ui["tests"],
         ),
         metric_cell(
-            plain_val(T(ui["yes"]), "on") if p["ci"] else plain_val(T(ui["no"]), "off"),
+            bi("div", ui["yes"], cls="metric-val on")
+            if p["ci"]
+            else bi("div", ui["no"], cls="metric-val off"),
             ui["ci"],
         ),
         metric_cell(bi("div", dates(p["updated"]), cls="metric-val"), ui["updated"]),
