@@ -102,7 +102,7 @@ const SITE = {
     back: { zh: "返回全部项目", en: "Back to all projects" },
     prev: { zh: "上一个", en: "Previous" },
     next: { zh: "下一个", en: "Next" },
-    yes: { zh: "有", en: "Yes" },
+    yes: { zh: "已接入", en: "Yes" },
     no: { zh: "无", en: "No" },
     footer: {
       zh: "用 AI 代理辅助编程的项目集合 · 大部分为个人自用工具",
