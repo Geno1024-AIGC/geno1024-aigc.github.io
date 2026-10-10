@@ -83,8 +83,10 @@
     var navAbout = document.querySelector('[data-nav="about"]');
     navProjects.textContent = t(SITE.ui.projects);
     navAbout.textContent = t(SITE.ui.about);
-    navAbout.classList.remove("active");
-    navProjects.classList.add("active");
+
+    var active = location.hash.indexOf("#/about") === 0 ? navAbout : navProjects;
+    navProjects.classList.toggle("active", active === navProjects);
+    navAbout.classList.toggle("active", active === navAbout);
 
     document.getElementById("footer-note").textContent = t(SITE.ui.footer);
     document.getElementById("footer-stats").textContent =
@@ -357,11 +359,42 @@
     window.scrollTo(0, 0);
   }
 
+  /* ---------- about view ---------- */
+
+  function renderAbout() {
+    view.innerHTML = "";
+    var page = el("div", "about fade-in");
+
+    page.appendChild(el("h1", null, esc(t(SITE.about.title))));
+    page.appendChild(el("p", "about-lead", esc(t(SITE.about.lead))));
+
+    var grid = el("div", "principle-grid");
+    SITE.about.principles.forEach(function (pr) {
+      var c = el("div", "principle");
+      c.appendChild(el("h3", null, esc(t({ zh: pr.zh, en: pr.en }))));
+      c.appendChild(el("p", null, esc(t(pr.body))));
+      grid.appendChild(c);
+    });
+    page.appendChild(grid);
+
+    var nBlock = el("div", "detail-block");
+    nBlock.appendChild(el("h2", "section-label", esc(t(SITE.about.notesTitle))));
+    var ul = el("ul", "notes");
+    SITE.about.notes.forEach(function (n) { ul.appendChild(el("li", null, esc(t(n)))); });
+    nBlock.appendChild(ul);
+    page.appendChild(nBlock);
+
+    view.appendChild(page);
+    applyChrome();
+    window.scrollTo(0, 0);
+  }
+
   /* ---------- router ---------- */
 
   function route() {
     var h = location.hash || "#/";
     if (h.indexOf("#/p/") === 0) renderDetail(decodeURIComponent(h.slice(4)));
+    else if (h.indexOf("#/about") === 0) renderAbout();
     else renderList();
   }
 
