@@ -400,6 +400,12 @@
 
   /* ---------- init ---------- */
 
+  document.getElementById("lang-toggle").addEventListener("click", function () {
+    lang = lang === "zh" ? "en" : "zh";
+    try { localStorage.setItem(LANG_KEY, lang); } catch (e) { /* ignore */ }
+    route();
+  });
+
   window.addEventListener("hashchange", route);
 
   var header = document.querySelector(".site-header");
