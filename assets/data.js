@@ -87,6 +87,7 @@ const SITE = {
     sortName: { zh: "名称", en: "Name" },
     showing: { zh: "共 {n} 个项目", en: "{n} projects" },
     empty: { zh: "没有匹配的项目。换个关键词，或者清掉筛选试试。", en: "Nothing matched. Try a different keyword, or clear the filters." },
+    noProjects: { zh: "还没有收录任何项目。", en: "No projects recorded yet." },
     highlights: { zh: "实现要点", en: "Highlights" },
     stack: { zh: "技术栈", en: "Stack" },
     summary: { zh: "这是什么", en: "What it is" },

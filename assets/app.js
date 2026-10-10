@@ -114,7 +114,7 @@
       PROJECTS.forEach(function (p) { grid.appendChild(card(p)); });
       page.appendChild(grid);
     } else {
-      page.appendChild(el("div", "empty", esc(t(SITE.ui.empty))));
+      page.appendChild(el("div", "empty", esc(t(SITE.ui.noProjects))));
     }
 
     view.appendChild(page);
