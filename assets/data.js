@@ -461,4 +461,52 @@ const PROJECTS = [
       { zh: "进程五态（Stopped / Starting / Running / Detached / Failed）、实时 PID、滚动日志、异步 TCP 健康探测", en: "Five process states (Stopped / Starting / Running / Detached / Failed), live PID, rolling log tail, async TCP health probes" },
       { zh: "自带一份 AGENTS.md，把提交信息规范写成 AI 代理也能照做的约定", en: "Ships an AGENTS.md that states the commit conventions as rules an AI agent can follow" }
     ]},
+  {
+    id: "whwd",
+    name: "whwd",
+    repo: "Geno1024-AIGC/whwd",
+    url: "https://github.com/Geno1024-AIGC/whwd",
+    tags: ["desktop", "cli"],
+    lang: "c",
+    stack: ["C11", "Win32", "SetupAPI", "CMake", "GPL-3.0"],
+    loc: 1410, commits: 31, tests: 0, ci: true, updated: "2026-09-24",
+    tagline: {
+      zh: "Windows 上的 mhwd",
+      en: "mhwd, for Windows"
+    },
+    summary: {
+      zh: "纯 C11 Win32 写的硬件检测与驱动更新工具，命令行和参数刻意对齐 Manjaro 的 mhwd。不依赖 .NET。",
+      en: "A hardware detection and driver updater in pure C11 Win32, deliberately mirroring Manjaro's mhwd in both CLI shape and philosophy. No .NET."
+    },
+    highlights: [
+      { zh: "用 SetupAPI 枚举设备，输出 HWID、名称、驱动版本、日期、提供商和实例 ID", en: "Enumerates devices via SetupAPI, reporting HWID, name, driver version, date, provider and instance id" },
+      { zh: "通过 ntdll!RtlGetVersion 探测系统特性，绕过被应用清单撒谎的 OS 版本", en: "Probes features through ntdll!RtlGetVersion, bypassing the OS version an application manifest lied about" },
+      { zh: "通过 Windows Update 的 IUpdateSearcher 列出驱动，源适配器藏在统一的 C 接口后面", en: "Lists drivers through Windows Update's IUpdateSearcher, with source adapters behind a uniform C interface" },
+      { zh: "x86 上用 v141_xp 工具集仍能编译出支持 Windows XP SP3 的版本，Win7 SP1 及以上则是另一套目标", en: "An x86 build still targets Windows XP SP3 via the v141_xp toolset, with Win7 SP1 and above as the other target" },
+      { zh: "JSON 是 CLI 和 GUI 之间的契约：命令行和 Win32 ListView 界面跑的是同一套核心代码", en: "JSON is the contract between CLI and GUI: the console tool and the Win32 ListView front end run identical core code" }
+    ]},
+  {
+    id: "task-roulette",
+    name: "task-roulette",
+    repo: "Geno1024-AIGC/task-roulette",
+    url: "https://github.com/Geno1024-AIGC/task-roulette",
+    tags: ["cli", "web"],
+    lang: "go",
+    stack: ["Go 1.22", "纯标准库", "go:embed"],
+    loc: 927, commits: 17, tests: 2, ci: true, updated: "2026-08-16",
+    tagline: {
+      zh: "每天帮你选一个项目",
+      en: "Picks one project for you, every day"
+    },
+    summary: {
+      zh: "约 900 行、零依赖的 Go 工具。用 sha256(日期) % 项目数 决定今天做哪个——同一天在任何机器上都是同一个结果，不需要服务器参与。",
+      en: "A ~900-line, zero-dependency Go tool. sha256(date) % len(projects) decides today's pick — the same day yields the same answer on any machine, with no server involved."
+    },
+    highlights: [
+      { zh: "选择是纯确定性的：同一天、同一批项目，永远是同一个结果", en: "Selection is purely deterministic: same day, same project list, same answer" },
+      { zh: "零依赖：net/http + go:embed + crypto/sha256，Linux / Windows / macOS 一个文件", en: "Zero dependencies: net/http + go:embed + crypto/sha256; one binary for Linux, Windows and macOS" },
+      { zh: "内嵌网页 UI，同一局域网的手机上也能打开", en: "An embedded web UI, reachable from your phone on the same LAN" },
+      { zh: "想换就 reroll，覆写会写进当日文件", en: "Reroll if you disagree — the override is written to a per-day file" },
+      { zh: "默认端口 29810 来自字符 \"tr\" 的两个 ASCII 码", en: "The default port 29810 comes from the ASCII bytes of \"tr\"" }
+    ]},
 ];
