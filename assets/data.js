@@ -318,4 +318,75 @@ const PROJECTS = [
       { zh: "12 种 APK 安装失败码各自对应一条明确的 UI 提示，而不是一句「安装失败」", en: "Twelve distinct install-failure codes each map to their own UI message, instead of one generic 'install failed'" },
       { zh: "零第三方库，连 JSON 解析器都是自己写的；因为每次读文件都要 fork su，用 Semaphore(4) 限制并发", en: "Zero third-party libraries — even the JSON parser is hand-rolled; a Semaphore(4) caps concurrency because every read forks su" }
     ]},
+  {
+    id: "picture-frame-android",
+    name: "picture-frame-android",
+    repo: "Geno1024-AIGC/picture-frame-android",
+    url: "https://github.com/Geno1024-AIGC/picture-frame-android",
+    tags: ["android"],
+    lang: "kotlin",
+    stack: ["Kotlin", "Jetpack Compose", "Material 3", "Gradle KTS"],
+    loc: 3360, commits: 32, tests: 28, ci: true, updated: "2026-09-26",
+    tagline: {
+      zh: "给照片加相框",
+      en: "Photo framing for Android"
+    },
+    summary: {
+      zh: "7 种相框样式、可调背景、渐变、比例和留白，导出 JPEG / PNG 进相册。预览和导出走的是同一套渲染代码。",
+      en: "Seven frame styles with adjustable backgrounds, gradients, aspect ratios and margins, exported to JPEG / PNG. The preview and the export share one rendering path."
+    },
+    highlights: [
+      { zh: "「预览不是导出的近似——它就是导出，只是画得小一点」", en: "\"The preview is not an approximation of the export — it is the export, drawn smaller.\"" },
+      { zh: "自己实现的可分离盒式模糊和叠加矩形阴影，保证输出不随 Android 版本漂移", en: "A hand-rolled separable box blur and stacked-rectangle shadows, chosen so output doesn't change between Android versions" },
+      { zh: "README 里写下了 canary 更新的威胁模型：清单被投毒也只能让更新失败，装不上别人的包——因为 Android 拒绝不同签名的更新", en: "The README reasons through the canary-updater threat model: a poisoned manifest can only fail the update, never install a foreign APK, because Android refuses a differently-signed update" },
+      { zh: "CI 真的跑 testDebugUnitTest 和 lintDebug 并当门禁用，不是只 assemble 一下", en: "CI actually runs testDebugUnitTest and lintDebug as gates, rather than just assembling" },
+      { zh: "7 个一键预设：拍立得、暗夜、虚化、暖阳、双线、留白、白边", en: "Seven one-tap presets: 拍立得, 暗夜, 虚化, 暖阳, 双线, 留白, 白边" }
+    ]},
+  {
+    id: "adbd-tcp",
+    name: "adbd-tcp",
+    repo: "Geno1024-AIGC/adbd-tcp",
+    url: "https://github.com/Geno1024-AIGC/adbd-tcp",
+    tags: ["android", "tooling"],
+    lang: "java",
+    stack: ["Java", "Android Platform APIs", "Gradle KTS", "零依赖"],
+    loc: 214, commits: 10, tests: 0, ci: true, updated: "2026-08-30",
+    tagline: {
+      zh: "让手机开启无线 ADB，从此不用插数据线",
+      en: "Wireless ADB for a rooted phone, no cable required"
+    },
+    summary: {
+      zh: "一个极小的 Android 应用：用 root 设置 service.adb.tcp.port，再用 setprop ctl.start / ctl.stop 控制 adbd 服务，把手机变成可以无线连接的 ADB 设备。",
+      en: "A tiny rooted-Android utility: it sets service.adb.tcp.port and drives the adbd service via setprop ctl.start / ctl.stop, turning the phone into a wireless-debuggable ADB target."
+    },
+    highlights: [
+      { zh: "零依赖：不用 AndroidX、不用任何 UI 框架，一个 Activity 加一个布局就完了", en: "Zero dependencies: no AndroidX, no UI toolkit — one Activity, one layout" },
+      { zh: "146 行的 MainActivity，所有 su -c 调用都放在后台线程上", en: "A 146-line MainActivity; every su -c call runs on a worker thread" },
+      { zh: "实时读回 service.adb.tcp.port 与 init.svc.adbd 的状态，端口号持久化到 SharedPreferences", en: "Reads back the live status of both the port property and the service; the port is persisted in SharedPreferences" },
+      { zh: "GitHub Actions 每次 push 构建一个 892 KB 的 debug APK 并传成 artifact", en: "GitHub Actions builds an 892 KB debug APK on every push and uploads it as an artifact" }
+    ]},
+  {
+    id: "nodejs-step-executor",
+    name: "nodejs-step-executor",
+    repo: "Geno1024-AIGC/nodejs-step-executor",
+    url: "https://github.com/Geno1024-AIGC/nodejs-step-executor",
+    tags: ["web", "tooling"],
+    lang: "js",
+    stack: ["Vanilla JS", "acorn", "无构建步骤"],
+    loc: 1596, commits: 8, tests: 0, ci: false, updated: "2026-08-30",
+    tagline: {
+      zh: "浏览器里的 JavaScript 单步调试器",
+      en: "A step debugger for JavaScript that lives in the browser"
+    },
+    summary: {
+      zh: "双击一个 HTML 文件就能用的 JS 单步调试器。acorn 负责解析，一个手写的 AST 解释器负责逐句执行——没有 Node 进程，没有 CDP，断点、调用栈和作用域变量全在页面里。",
+      en: "A step debugger for JavaScript that runs entirely client-side. acorn parses; a hand-written AST interpreter executes statement by statement. No Node process, no CDP, no server — breakpoints, call stack and scope variables all live in the page."
+    },
+    highlights: [
+      { zh: "异步协程解释器：每个 AST 节点都是 await 的，这才使得「在任意语句处暂停」成为可能", en: "An async coroutine interpreter — every node is awaited, which is what makes pausing at an arbitrary statement possible" },
+      { zh: "return / break / continue 靠抛哨兵对象跨 await 传递，不会被吞掉", en: "return / break / continue propagate as thrown sentinel objects, safe across await boundaries" },
+      { zh: "重写了 map / filter / forEach / reduce / some / every / find / findIndex / sort，回调能单步进去", en: "Reimplemented map / filter / forEach / reduce / some / every / find / findIndex / sort so callbacks are steppable" },
+      { zh: "内置 _opCount 指令上限，脚本跑飞时报错，而不是把标签页卡死", en: "A built-in _opCount cap errors out on a pathological script instead of freezing the tab" },
+      { zh: "3 个文件、无构建、acorn 本地打包，可离线使用；先前后端版本用 CDP + WebSocket，后来重写成了纯前端", en: "Three files, no build step, acorn bundled locally so it works offline; it started as a CDP + WebSocket backend and was rewritten to be purely client-side" }
+    ]},
 ];
