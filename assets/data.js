@@ -125,4 +125,53 @@ const LANGS = {
   kotlin: "Kotlin", java: "Java", go: "Go", cpp: "C++", c: "C", js: "JavaScript"
 };
 
-const PROJECTS = [];
+const PROJECTS = [
+  {
+    id: "gits-android",
+    name: "gits-android",
+    repo: "Geno1024-AIGC/gits-android",
+    url: "https://github.com/Geno1024-AIGC/gits-android",
+    tags: ["android"],
+    lang: "kotlin",
+    stack: ["Kotlin 2.4", "Jetpack Compose", "Eclipse JGit", "BouncyCastle", "Gradle"],
+    loc: 16700, commits: 106, tests: 216, ci: true, updated: "2026-10-10",
+    tagline: {
+      zh: "手机上的完整 Git 客户端",
+      en: "A full Git client for Android"
+    },
+    summary: {
+      zh: "基于 Eclipse JGit 的 Android Git 客户端。克隆、拉取、暂存、提交、储藏、blame 和 diff 全部在设备上完成，外加一层自己实现的 OpenPGP，用来给提交签名。",
+      en: "An Android Git client built on Eclipse JGit. Clone, fetch, stage, commit, stash, blame and diff all happen on-device, plus a hand-rolled OpenPGP layer used to sign commits."
+    },
+    highlights: [
+      { zh: "三个模块：app（Compose 界面）、git-core（683 行核心 API）、openpgp", en: "Three modules: app (Compose UI), git-core (a 683-line core API), and openpgp" },
+      { zh: "自建 OpenPGP 层：密钥生成、钥匙串、ASCII armor、分离式签名，不捆绑任何 gpg 二进制", en: "Hand-rolled OpenPGP: keygen, keyrings, ASCII armoring and detached signatures without bundling a GPG binary" },
+      { zh: "216 个单元测试覆盖 Git 核心，分布在 30 个测试文件里", en: "216 unit tests over the Git core, spread across 30 test files" },
+      { zh: "CI 会核对 APK 签名证书的 SHA-256，对不上就拒绝出包——这正是那种「绿灯但其实签错包」的失败", en: "CI verifies the built APK's signing-cert SHA-256 and refuses to ship on a mismatch — exactly the failure that otherwise looks like a green run" },
+      { zh: "约 16,700 行 Kotlin，这一组里最大的 Android 代码库", en: "~16,700 lines of Kotlin — the largest Android codebase in this collection" }
+    ]},
+  {
+    id: "opencode-inspire",
+    name: "opencode-inspire",
+    repo: "Geno1024-AIGC/opencode-inspire",
+    url: "https://github.com/Geno1024-AIGC/opencode-inspire",
+    tags: ["android"],
+    lang: "kotlin",
+    stack: ["Kotlin", "Jetpack Compose", "OkHttp 5", "kotlinx.serialization", "Coroutines"],
+    loc: 19600, commits: 509, tests: 30, ci: true, updated: "2026-09-28",
+    tagline: {
+      zh: "手机上的 OpenCode 智能体客户端",
+      en: "An Android client for the OpenCode coding agent"
+    },
+    summary: {
+      zh: "连上跑着 opencode serve 的主机，挑一个项目目录，然后像聊天一样和编码智能体对话。自己写的 Markdown 渲染模块，内置 Mermaid 画图。",
+      en: "Connect to a host running opencode serve, pick a project directory, and chat with the coding agent. A hand-written Markdown module, with Mermaid bundled for diagrams."
+    },
+    highlights: [
+      { zh: "约 19,600 行 Kotlin、509 次提交，是这一组里迭代最久的项目", en: "~19,600 lines of Kotlin across 509 commits — the most-iterated project here" },
+      { zh: "手写的 Markdown 解析模块 + 打包进 assets 的 mermaid，回复里的图表直接渲染", en: "A hand-written Markdown module plus vendored Mermaid renders diagrams straight in replies" },
+      { zh: "用量日历、按模型筛选的统计图表，以及可分享的总结卡片", en: "Token-usage calendar, per-model filtered charts, and shareable summary cards" },
+      { zh: "唯一有正式 release 工作流的仓库：打 tag 出已签名 APK", en: "The only repo with a real release workflow: tag it, get a keystore-signed APK" },
+      { zh: "AGENTS.md 要求每次提交重新生成 tokens.txt，把造这个 App 实际花掉的 AI token 成本编译进 BuildConfig", en: "AGENTS.md mandates regenerating tokens.txt on every commit, compiling the real AI token cost of building the app into BuildConfig" }
+    ]},
+];
