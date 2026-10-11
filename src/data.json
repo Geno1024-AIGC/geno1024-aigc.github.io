@@ -129,6 +129,38 @@
         "zh": "状态",
         "en": "Status"
       },
+      "colName": {
+        "zh": "名称 & 介绍",
+        "en": "Name & intro"
+      },
+      "colLang": {
+        "zh": "语言",
+        "en": "Lang"
+      },
+      "colTags": {
+        "zh": "类型",
+        "en": "Type"
+      },
+      "colStatus": {
+        "zh": "状态",
+        "en": "Status"
+      },
+      "colCommits": {
+        "zh": "提交",
+        "en": "Commits"
+      },
+      "colLoc": {
+        "zh": "代码行",
+        "en": "LOC"
+      },
+      "colTokens": {
+        "zh": "Token",
+        "en": "Token"
+      },
+      "colUpdated": {
+        "zh": "更新",
+        "en": "Updated"
+      },
       "sort": {
         "zh": "排序",
         "en": "Sort"

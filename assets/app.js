@@ -71,9 +71,11 @@
   var grid = document.getElementById("grid");
 
   if (grid) {
-    var cards = Array.prototype.slice.call(grid.querySelectorAll(".card"));
+    var rows = Array.prototype.slice.call(grid.querySelectorAll("tr"));
+    var headers = Array.prototype.slice.call(
+      document.querySelectorAll(".proj-table th[data-sort]")
+    );
     var searchInput = document.getElementById("search-input");
-    var sortSelect = document.getElementById("sort-select");
     var clearBtn = document.getElementById("clear-btn");
     var emptyEl = document.getElementById("empty");
     var emptyClear = document.getElementById("empty-clear");
@@ -81,42 +83,57 @@
     var statusChips = Array.prototype.slice.call(
       document.querySelectorAll(".filters .chip[data-status]")
     );
-    var state = { q: "", tag: "", status: "", sort: "updated" };
+    var NUMERIC = { loc: 1, commits: 1, tokens: 1 };
+    var ASCENDING = { name: 1, lang: 1, status: 1, tags: 1 };
+    var state = { q: "", tag: "", status: "", sort: "updated", dir: "desc" };
 
-    shown = cards.length;
+    shown = rows.length;
 
-    function key(card, field) {
-      return field === "loc" || field === "commits"
-        ? Number(card.getAttribute("data-" + field))
-        : card.getAttribute("data-" + field);
+    function key(row, field) {
+      var raw = row.getAttribute("data-" + field);
+      return NUMERIC[field] ? Number(raw) : raw;
+    }
+
+    function markHeaders() {
+      headers.forEach(function (th) {
+        var on = th.getAttribute("data-sort") === state.sort;
+        th.classList.toggle("on", on);
+        th.classList.toggle("desc", on && state.dir === "desc");
+        th.setAttribute(
+          "aria-sort",
+          on ? (state.dir === "asc" ? "ascending" : "descending") : "none"
+        );
+      });
     }
 
     function apply() {
       var q = state.q.toLowerCase();
-      var ordered = cards.slice().sort(function (a, b) {
-        if (state.sort === "name") return key(a, "name").localeCompare(key(b, "name"));
-        if (state.sort === "updated") return key(b, "updated").localeCompare(key(a, "updated"));
-        return key(b, state.sort) - key(a, state.sort);
+      var ordered = rows.slice().sort(function (a, b) {
+        var ka = key(a, state.sort);
+        var kb = key(b, state.sort);
+        var r = NUMERIC[state.sort] ? ka - kb : ka.localeCompare(kb);
+        return state.dir === "desc" ? -r : r;
       });
 
       shown = 0;
-      ordered.forEach(function (card) {
-        var tags = card.getAttribute("data-tags").split(",");
+      ordered.forEach(function (row) {
+        var tags = row.getAttribute("data-tags").split(",");
         var visible =
           (!state.tag || tags.indexOf(state.tag) !== -1) &&
-          (!state.status || card.getAttribute("data-status") === state.status) &&
+          (!state.status || row.getAttribute("data-status") === state.status) &&
           (!q ||
-            (card.getAttribute("data-search") || card.textContent)
+            (row.getAttribute("data-search") || row.textContent)
               .toLowerCase()
               .indexOf(q) !== -1);
-        card.hidden = !visible;
+        row.hidden = !visible;
         if (visible) shown++;
-        grid.appendChild(card);
+        grid.appendChild(row);
       });
 
       if (emptyEl) emptyEl.hidden = shown !== 0;
       if (clearBtn) clearBtn.hidden = !state.q && !state.tag && !state.status;
       updateResultLine();
+      syncFade();
     }
 
     function reset() {
@@ -140,12 +157,34 @@
       });
     }
 
-    if (sortSelect) {
-      sortSelect.addEventListener("change", function () {
-        state.sort = sortSelect.value;
+    headers.forEach(function (th) {
+      function activate() {
+        var field = th.getAttribute("data-sort");
+        if (state.sort === field) {
+          state.dir = state.dir === "asc" ? "desc" : "asc";
+        } else {
+          state.sort = field;
+          state.dir = ASCENDING[field] ? "asc" : "desc";
+        }
+        markHeaders();
         apply();
+      }
+      th.addEventListener("click", activate);
+      th.addEventListener("keydown", function (e) {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          activate();
+        }
       });
-    }
+    });
+
+    rows.forEach(function (row) {
+      row.addEventListener("click", function (e) {
+        if (e.target.closest("a")) return;
+        var link = row.querySelector(".row-name");
+        if (link) window.location.href = link.href;
+      });
+    });
 
     chips.forEach(function (chip) {
       chip.addEventListener("click", function () {
@@ -166,7 +205,23 @@
     if (clearBtn) clearBtn.addEventListener("click", reset);
     if (emptyClear) emptyClear.addEventListener("click", reset);
 
+    var shell = document.querySelector(".table-shell");
+    var scroller = shell ? shell.firstElementChild : null;
+
+    function syncFade() {
+      if (!scroller) return;
+      shell.classList.toggle(
+        "at-end",
+        scroller.scrollLeft + scroller.clientWidth >= scroller.scrollWidth - 2
+      );
+    }
+
+    if (scroller) scroller.addEventListener("scroll", syncFade, { passive: true });
+    window.addEventListener("resize", syncFade);
+
+    markHeaders();
     apply();
+    syncFade();
   }
 
   /* ---------- chrome ---------- */

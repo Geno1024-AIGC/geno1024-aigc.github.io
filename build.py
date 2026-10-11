@@ -401,18 +401,22 @@ def index_main(ctx):
             f'{bi("span", label)}<span class="chip-n">{status_counts[key]}</span></button>'
         )
 
-    options = "".join(
-        f'<option value="{value}" data-en="{esc(T(label, "en"))}"'
-        f'{" selected" if value == "updated" else ""}>{esc(T(label, "zh"))}</option>'
-        for value, label in [
-            ("updated", ui["sortUpdated"]),
-            ("loc", ui["sortLoc"]),
-            ("commits", ui["sortCommits"]),
-            ("name", ui["sortName"]),
-        ]
+    columns = [
+        ("name", "c-name", ui["colName"]),
+        ("lang", "c-lang", ui["colLang"]),
+        ("tags", "c-tags", ui["colTags"]),
+        ("status", "c-status", ui["colStatus"]),
+        ("commits", "c-num c-commits", ui["colCommits"]),
+        ("loc", "c-num c-loc", ui["colLoc"]),
+        ("tokens", "c-num c-tokens", ui["colTokens"]),
+        ("updated", "c-date", ui["colUpdated"]),
+    ]
+    head = "".join(
+        f'<th class="{cls}" data-sort="{key}" scope="col" tabindex="0">'
+        f'{bi("span", label)}</th>'
+        for key, cls, label in columns
     )
-
-    cards = "".join(index_card(ctx, p) for p in projects)
+    rows = "".join(index_row(ctx, p) for p in projects)
 
     return f"""<main>
 <div class="fade-in">
@@ -430,9 +434,6 @@ def index_main(ctx):
   </div>
   {"".join(chips)}
   <div class="filters-right">
-    <div class="select-wrap">
-      <select id="sort-select" aria-label="排序 / Sort">{options}</select>
-    </div>
     <button class="link-btn" id="clear-btn" type="button" hidden>{bi("span", ui["clear"])}</button>
   </div>
 </div>
@@ -444,7 +445,14 @@ def index_main(ctx):
 
 <p class="result-line" id="result-line" data-tpl-zh="{esc(T(ui["showing"], "zh"))}" data-tpl-en="{esc(T(ui["showing"], "en"))}">{esc(T(ui["showing"], "zh").replace("{n}", str(t["projects"])))}</p>
 
-<div class="grid" id="grid">{cards}</div>
+<div class="table-shell">
+<div class="table-wrap scroll">
+  <table class="proj-table">
+    <thead><tr>{head}</tr></thead>
+    <tbody id="grid">{rows}</tbody>
+  </table>
+</div>
+</div>
 
 <div class="empty" id="empty" hidden>
   <p data-en="{esc(T(ui["empty"], "en"))}">{esc(T(ui["empty"], "zh"))}</p>
@@ -454,40 +462,53 @@ def index_main(ctx):
 </main>"""
 
 
-def index_card(ctx, p):
+def cell(label, content, cls):
+    return (
+        f'<td class="{cls}">'
+        f'{bi("span", label, cls="cell-label")}'
+        f"{content}"
+        f"</td>"
+    )
+
+
+def index_row(ctx, p):
     tags = ctx["tags"]
+    ui = ctx["site"]["ui"]
     status = p["status"]
     status_label = ctx["status"][status]
-    search_bits = [p["name"], ctx["langs"][p["lang"]], T(p["tagline"]), T(p["tagline"], "en")]
+    lang = ctx["langs"][p["lang"]]
+    toks = ctx["tokens"].get(p["id"], {}).get("total", 0)
+
+    search_bits = [p["name"], lang, T(p["tagline"]), T(p["tagline"], "en")]
     for h in p["highlights"]:
         search_bits.extend([T(h), T(h, "en")])
     search_bits.extend([T(status_label), T(status_label, "en")])
+    for tag in p["tags"]:
+        search_bits.extend([T(tags[tag]), T(tags[tag], "en")])
     search = " ".join(bit for bit in search_bits if bit)
 
-    foot = [
-        f"<span>{num(p['loc'])} LOC</span>",
-        f"<span>{p['commits']} {plural(p['commits'], 'commit')}</span>",
-    ]
-    if p["tests"] > 0:
-        foot.append(f"<span>{p['tests']} {plural(p['tests'], 'test')}</span>")
-    foot.append(bi("span", dates(p["updated"])))
-    foot.append('<span class="spacer go">&rarr;</span>')
+    tag_chips = "".join(
+        f'<span class="tag-chip">{bi("span", tags[t])}</span>' for t in p["tags"]
+    )
 
     return (
-        f'<a class="card" href="p/{p["id"]}.html"'
-        f' data-tags="{esc(",".join(p["tags"]))}"'
-        f' data-name="{esc(p["name"])}"'
+        f'<tr data-name="{esc(p["name"])}" data-lang="{esc(p["lang"])}"'
+        f' data-tags="{esc(",".join(p["tags"]))}" data-status="{esc(status)}"'
         f' data-loc="{p["loc"]}" data-commits="{p["commits"]}"'
-        f' data-updated="{esc(p["updated"])}"'
-        f' data-status="{esc(status)}"'
+        f' data-tokens="{toks}" data-updated="{esc(p["updated"])}"'
         f' data-search="{esc(search)}">'
-        f'<div class="card-head"><span class="card-name">{esc(p["name"])}</span>'
-        f'<span class="card-badges">'
-        f'{bi("span", status_label, cls=f"status-tag {status}")}'
-        f'<span class="lang-tag">{esc(ctx["langs"][p["lang"]])}</span></span></div>'
-        f'{bi("p", p["tagline"], cls="card-title")}'
-        f'<div class="card-foot">{"".join(foot)}</div>'
-        f"</a>"
+        f'<td class="c-name">'
+        f'<a class="row-name" href="p/{p["id"]}.html">{esc(p["name"])}</a>'
+        f'{bi("span", p["tagline"], cls="row-tagline")}'
+        f"</td>"
+        f"{cell(ui['colLang'], esc(lang), 'c-lang')}"
+        f"{cell(ui['colTags'], tag_chips, 'c-tags')}"
+        f"{cell(ui['colStatus'], bi('span', status_label, cls=f'status-tag {status}'), 'c-status')}"
+        f"{cell(ui['colCommits'], str(p['commits']), 'c-num c-commits')}"
+        f"{cell(ui['colLoc'], num(p['loc']), 'c-num c-loc')}"
+        f"{cell(ui['colTokens'], fmt_tokens(toks), 'c-num c-tokens')}"
+        f"{cell(ui['colUpdated'], bi('span', dates(p['updated'])), 'c-date')}"
+        f"</tr>"
     )
 
 
