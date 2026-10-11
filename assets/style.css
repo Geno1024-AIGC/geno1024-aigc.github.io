@@ -407,7 +407,13 @@ main {
   word-break: break-word;
 }
 
-.card-title { margin: 0 0 12px; font-size: 14.5px; color: var(--text-2); }
+.card-title {
+  flex: 1;
+  margin: 0 0 16px;
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--text-2);
+}
 
 .lang-tag {
   flex-shrink: 0;
@@ -421,34 +427,13 @@ main {
   text-transform: uppercase;
 }
 
-.card-points { margin: 0 0 16px; padding: 0; list-style: none; flex: 1; }
-
-.card-points li {
-  position: relative;
-  padding-left: 16px;
-  margin-bottom: 7px;
-  font-size: 13.5px;
-  line-height: 1.55;
-  color: var(--text-2);
-}
-
-.card-points li::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 8px;
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: var(--accent);
-  opacity: 0.55;
-}
-
 .card-foot {
   display: flex;
   flex-wrap: wrap;
+  align-content: flex-start;
   align-items: center;
   gap: 6px 12px;
+  min-height: 58px;
   padding-top: 13px;
   border-top: 1px solid var(--border);
   font-family: var(--mono);

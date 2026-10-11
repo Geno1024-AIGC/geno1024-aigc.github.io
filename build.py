@@ -433,7 +433,10 @@ def index_main(ctx):
 
 def index_card(ctx, p):
     tags = ctx["tags"]
-    points = "".join(bi("li", h) for h in p["highlights"][:3])
+    search_bits = [p["name"], ctx["langs"][p["lang"]], T(p["tagline"]), T(p["tagline"], "en")]
+    for h in p["highlights"]:
+        search_bits.extend([T(h), T(h, "en")])
+    search = " ".join(bit for bit in search_bits if bit)
 
     foot = [
         f"<span>{num(p['loc'])} LOC</span>",
@@ -449,11 +452,11 @@ def index_card(ctx, p):
         f' data-tags="{esc(",".join(p["tags"]))}"'
         f' data-name="{esc(p["name"])}"'
         f' data-loc="{p["loc"]}" data-commits="{p["commits"]}"'
-        f' data-updated="{esc(p["updated"])}">'
+        f' data-updated="{esc(p["updated"])}"'
+        f' data-search="{esc(search)}">'
         f'<div class="card-head"><span class="card-name">{esc(p["name"])}</span>'
         f'<span class="lang-tag">{esc(ctx["langs"][p["lang"]])}</span></div>'
         f'{bi("p", p["tagline"], cls="card-title")}'
-        f'<ul class="card-points">{points}</ul>'
         f'<div class="card-foot">{"".join(foot)}</div>'
         f"</a>"
     )

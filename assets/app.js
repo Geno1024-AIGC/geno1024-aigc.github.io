@@ -101,7 +101,10 @@
         var tags = card.getAttribute("data-tags").split(",");
         var visible =
           (!state.tag || tags.indexOf(state.tag) !== -1) &&
-          (!q || card.textContent.toLowerCase().indexOf(q) !== -1);
+          (!q ||
+            (card.getAttribute("data-search") || card.textContent)
+              .toLowerCase()
+              .indexOf(q) !== -1);
         card.hidden = !visible;
         if (visible) shown++;
         grid.appendChild(card);
