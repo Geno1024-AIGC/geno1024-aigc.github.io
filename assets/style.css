@@ -313,6 +313,20 @@ main {
 
 .chip.on .chip-n { color: rgba(94, 234, 212, 0.65); }
 
+.filters-sub {
+  position: static;
+  z-index: auto;
+  padding: 0 0 14px;
+  margin: -10px 0 0;
+  background: none;
+}
+
+.filters-label {
+  margin-right: 2px;
+  font-size: 12.5px;
+  color: var(--text-3);
+}
+
 .filters-right { display: flex; align-items: center; gap: 8px; margin-left: auto; }
 
 .select-wrap { position: relative; }
@@ -415,6 +429,42 @@ main {
   color: var(--text-2);
 }
 
+.card-badges {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  flex-shrink: 0;
+}
+
+.status-tag {
+  padding: 3px 9px;
+  border: 1px solid;
+  border-radius: 6px;
+  font-size: 10.5px;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+}
+
+.status-tag.wip {
+  border-color: rgba(251, 191, 36, 0.32);
+  background: rgba(251, 191, 36, 0.08);
+  color: var(--warn);
+}
+
+.status-tag.usable {
+  border-color: rgba(129, 140, 248, 0.32);
+  background: rgba(129, 140, 248, 0.08);
+  color: var(--accent-2);
+}
+
+.status-tag.done {
+  border-color: rgba(94, 234, 212, 0.32);
+  background: rgba(94, 234, 212, 0.08);
+  color: var(--accent);
+}
+
+.status-tag.lg { padding: 5px 12px; font-size: 12px; }
+
 .lang-tag {
   flex-shrink: 0;
   padding: 3px 9px;
@@ -469,6 +519,16 @@ main {
   letter-spacing: -0.8px;
   word-break: break-word;
 }
+
+.detail-top {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.detail-top h1 { margin: 0; }
 
 .detail-tagline { margin: 0 0 26px; font-size: 18px; color: var(--accent); }
 

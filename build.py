@@ -209,7 +209,11 @@ def detail_main(ctx, p, idx):
         f'<a class="back-link" href="../index.html"><span aria-hidden="true">&larr;</span>'
         f'{bi("span", ui["back"])}</a>'
     )
-    out.append(f"<h1>{esc(p['name'])}</h1>")
+    out.append(
+        f'<div class="detail-top"><h1>{esc(p["name"])}</h1>'
+        f'{bi("span", ctx["status"][p["status"]], cls=f"status-tag lg {p["status"]}")}'
+        f"</div>"
+    )
     out.append(bi("p", p["tagline"], cls="detail-tagline"))
     out.append(
         f'<a class="detail-repo" href="{esc(p["url"])}" target="_blank" rel="noopener">'
@@ -383,6 +387,20 @@ def index_main(ctx):
             f'{bi("span", label)}<span class="chip-n">{counts[tag]}</span></button>'
         )
 
+    status_counts = {}
+    for p in projects:
+        status_counts[p["status"]] = status_counts.get(p["status"], 0) + 1
+
+    status_chips = [f'<button class="chip on" type="button" data-status="">'
+                    f'{bi("span", ui["all"])}</button>']
+    for key, label in ctx["status"].items():
+        if not status_counts.get(key):
+            continue
+        status_chips.append(
+            f'<button class="chip" type="button" data-status="{esc(key)}">'
+            f'{bi("span", label)}<span class="chip-n">{status_counts[key]}</span></button>'
+        )
+
     options = "".join(
         f'<option value="{value}" data-en="{esc(T(label, "en"))}"'
         f'{" selected" if value == "updated" else ""}>{esc(T(label, "zh"))}</option>'
@@ -419,6 +437,11 @@ def index_main(ctx):
   </div>
 </div>
 
+<div class="filters filters-sub">
+  {bi("span", ui["statusLabel"], cls="filters-label")}
+  {"".join(status_chips)}
+</div>
+
 <p class="result-line" id="result-line" data-tpl-zh="{esc(T(ui["showing"], "zh"))}" data-tpl-en="{esc(T(ui["showing"], "en"))}">{esc(T(ui["showing"], "zh").replace("{n}", str(t["projects"])))}</p>
 
 <div class="grid" id="grid">{cards}</div>
@@ -433,9 +456,12 @@ def index_main(ctx):
 
 def index_card(ctx, p):
     tags = ctx["tags"]
+    status = p["status"]
+    status_label = ctx["status"][status]
     search_bits = [p["name"], ctx["langs"][p["lang"]], T(p["tagline"]), T(p["tagline"], "en")]
     for h in p["highlights"]:
         search_bits.extend([T(h), T(h, "en")])
+    search_bits.extend([T(status_label), T(status_label, "en")])
     search = " ".join(bit for bit in search_bits if bit)
 
     foot = [
@@ -453,9 +479,12 @@ def index_card(ctx, p):
         f' data-name="{esc(p["name"])}"'
         f' data-loc="{p["loc"]}" data-commits="{p["commits"]}"'
         f' data-updated="{esc(p["updated"])}"'
+        f' data-status="{esc(status)}"'
         f' data-search="{esc(search)}">'
         f'<div class="card-head"><span class="card-name">{esc(p["name"])}</span>'
-        f'<span class="lang-tag">{esc(ctx["langs"][p["lang"]])}</span></div>'
+        f'<span class="card-badges">'
+        f'{bi("span", status_label, cls=f"status-tag {status}")}'
+        f'<span class="lang-tag">{esc(ctx["langs"][p["lang"]])}</span></span></div>'
         f'{bi("p", p["tagline"], cls="card-title")}'
         f'<div class="card-foot">{"".join(foot)}</div>'
         f"</a>"
@@ -518,6 +547,7 @@ def load_context(collect=True):
         "site": data["SITE"],
         "tags": data["TAGS"],
         "langs": data["LANGS"],
+        "status": data["STATUS"],
         "projects": projects,
         "tokens": token_projects,
         "totals": totals,

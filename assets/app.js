@@ -78,7 +78,10 @@
     var emptyEl = document.getElementById("empty");
     var emptyClear = document.getElementById("empty-clear");
     var chips = Array.prototype.slice.call(document.querySelectorAll(".filters .chip[data-tag]"));
-    var state = { q: "", tag: "", sort: "updated" };
+    var statusChips = Array.prototype.slice.call(
+      document.querySelectorAll(".filters .chip[data-status]")
+    );
+    var state = { q: "", tag: "", status: "", sort: "updated" };
 
     shown = cards.length;
 
@@ -101,6 +104,7 @@
         var tags = card.getAttribute("data-tags").split(",");
         var visible =
           (!state.tag || tags.indexOf(state.tag) !== -1) &&
+          (!state.status || card.getAttribute("data-status") === state.status) &&
           (!q ||
             (card.getAttribute("data-search") || card.textContent)
               .toLowerCase()
@@ -111,16 +115,20 @@
       });
 
       if (emptyEl) emptyEl.hidden = shown !== 0;
-      if (clearBtn) clearBtn.hidden = !state.q && !state.tag;
+      if (clearBtn) clearBtn.hidden = !state.q && !state.tag && !state.status;
       updateResultLine();
     }
 
     function reset() {
       state.q = "";
       state.tag = "";
+      state.status = "";
       if (searchInput) searchInput.value = "";
       chips.forEach(function (chip) {
         chip.classList.toggle("on", chip.getAttribute("data-tag") === "");
+      });
+      statusChips.forEach(function (chip) {
+        chip.classList.toggle("on", chip.getAttribute("data-status") === "");
       });
       apply();
     }
@@ -143,6 +151,14 @@
       chip.addEventListener("click", function () {
         state.tag = chip.getAttribute("data-tag");
         chips.forEach(function (c) { c.classList.toggle("on", c === chip); });
+        apply();
+      });
+    });
+
+    statusChips.forEach(function (chip) {
+      chip.addEventListener("click", function () {
+        state.status = chip.getAttribute("data-status");
+        statusChips.forEach(function (c) { c.classList.toggle("on", c === chip); });
         apply();
       });
     });

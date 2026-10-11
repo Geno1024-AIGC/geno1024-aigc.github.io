@@ -125,6 +125,10 @@
         "zh": "清除筛选",
         "en": "Clear"
       },
+      "statusLabel": {
+        "zh": "状态",
+        "en": "Status"
+      },
       "sort": {
         "zh": "排序",
         "en": "Sort"
@@ -265,6 +269,20 @@
     "c": "C",
     "js": "JavaScript"
   },
+  "STATUS": {
+    "wip": {
+      "zh": "未完成",
+      "en": "WIP"
+    },
+    "usable": {
+      "zh": "基本可用",
+      "en": "Usable"
+    },
+    "done": {
+      "zh": "已完成",
+      "en": "Done"
+    }
+  },
   "PROJECTS": [
     {
       "id": "gits-android",
@@ -286,6 +304,7 @@
       "commits": 106,
       "tests": 216,
       "ci": true,
+      "status": "usable",
       "updated": "2026-10-10",
       "tagline": {
         "zh": "手机上的完整 Git 客户端",
@@ -338,6 +357,7 @@
       "commits": 509,
       "tests": 30,
       "ci": true,
+      "status": "usable",
       "updated": "2026-09-28",
       "tagline": {
         "zh": "手机上的 OpenCode 智能体客户端",
@@ -390,6 +410,7 @@
       "commits": 33,
       "tests": 52,
       "ci": true,
+      "status": "done",
       "updated": "2026-10-10",
       "tagline": {
         "zh": "把 ZIP 的“压缩”和“打包”拆成两件事",
@@ -442,6 +463,7 @@
       "commits": 107,
       "tests": 4,
       "ci": true,
+      "status": "wip",
       "updated": "2026-10-01",
       "tagline": {
         "zh": "三层结构的自托管家用 ERP",
@@ -495,6 +517,7 @@
       "commits": 33,
       "tests": 28,
       "ci": false,
+      "status": "usable",
       "updated": "2026-09-09",
       "tagline": {
         "zh": "带网页控制台的 TCP 端口转发器",
@@ -547,6 +570,7 @@
       "commits": 48,
       "tests": 1,
       "ci": true,
+      "status": "usable",
       "updated": "2026-10-07",
       "tagline": {
         "zh": "PDF 内部结构浏览器与提取器",
@@ -599,6 +623,7 @@
       "commits": 5,
       "tests": 5,
       "ci": false,
+      "status": "wip",
       "updated": "2026-08-16",
       "tagline": {
         "zh": "把二维码的解码过程动画化",
@@ -650,6 +675,7 @@
       "commits": 25,
       "tests": 0,
       "ci": true,
+      "status": "done",
       "updated": "2026-10-10",
       "tagline": {
         "zh": "QQ 缓存图片的相册",
@@ -701,6 +727,7 @@
       "commits": 32,
       "tests": 28,
       "ci": true,
+      "status": "wip",
       "updated": "2026-09-26",
       "tagline": {
         "zh": "给照片加相框",
@@ -753,6 +780,7 @@
       "commits": 10,
       "tests": 0,
       "ci": true,
+      "status": "usable",
       "updated": "2026-08-30",
       "tagline": {
         "zh": "让手机开启无线 ADB，从此不用插数据线",
@@ -800,6 +828,7 @@
       "commits": 8,
       "tests": 0,
       "ci": false,
+      "status": "wip",
       "updated": "2026-08-30",
       "tagline": {
         "zh": "浏览器里的 JavaScript 单步调试器",
@@ -852,6 +881,7 @@
       "commits": 11,
       "tests": 0,
       "ci": false,
+      "status": "usable",
       "updated": "2026-08-10",
       "tagline": {
         "zh": "抓取网页响应体的中间人代理",
@@ -903,6 +933,7 @@
       "commits": 10,
       "tests": 0,
       "ci": false,
+      "status": "wip",
       "updated": "2026-08-13",
       "tagline": {
         "zh": "把任意文件夹变成定时 Git 备份",
@@ -956,6 +987,7 @@
       "commits": 10,
       "tests": 0,
       "ci": false,
+      "status": "wip",
       "updated": "2026-09-28",
       "tagline": {
         "zh": "给这堆项目做的统一启动器",
@@ -1009,6 +1041,7 @@
       "commits": 31,
       "tests": 0,
       "ci": true,
+      "status": "wip",
       "updated": "2026-09-24",
       "tagline": {
         "zh": "Windows 上的 mhwd",
@@ -1060,6 +1093,7 @@
       "commits": 17,
       "tests": 2,
       "ci": true,
+      "status": "done",
       "updated": "2026-08-16",
       "tagline": {
         "zh": "每天帮你选一个项目",
