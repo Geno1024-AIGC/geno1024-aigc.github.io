@@ -47,6 +47,17 @@ OG_DESCRIPTION = (
     "Written entirely by AI, 0% human code: Android, Go, Qt/C++ desktop tools and codecs."
 )
 
+# Snippet issued by Baidu Tongji, kept verbatim.
+BAIDU_TONGJI = """<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?b704b711b597a23969b2e1dc1f76c98d";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>"""
+
 
 # ---------- text helpers ----------
 
@@ -142,6 +153,7 @@ def shell(ctx, *, pre, nav_active, title_zh, title_en, description, og_descripti
 <meta property="og:type" content="website">
 <link rel="icon" href="{FAVICON}">
 <link rel="stylesheet" href="{pre}assets/style.css">
+{BAIDU_TONGJI}
 </head>
 <body data-title-en="{esc(title_en)}">
 <div class="bg-grid" aria-hidden="true"></div>
