@@ -87,7 +87,6 @@ def write(db_path=DEFAULT_DB, out_path=DEFAULT_OUT, project_ids=None):
 
     payload = {
         "generated": datetime.datetime.now().astimezone().isoformat(timespec="seconds"),
-        "source": str(db_path),
         "projects": dict(sorted(projects.items())),
         "totals": totals(projects),
     }
