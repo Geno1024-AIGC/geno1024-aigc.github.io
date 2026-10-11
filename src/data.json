@@ -98,6 +98,10 @@
       "ci": {
         "zh": "个项目接了 CI",
         "en": "projects wired to CI"
+      },
+      "tokens": {
+        "zh": "AI Token 总量",
+        "en": "AI tokens"
       }
     },
     "ui": {

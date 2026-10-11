@@ -353,6 +353,7 @@ def index_main(ctx):
         (num(t["commits"]), site["stats"]["commits"]),
         (num(t["tests"]), site["stats"]["tests"]),
         (f"{t['ci']} / {t['projects']}", site["stats"]["ci"]),
+        (fmt_tokens(t["tokens"]), site["stats"]["tokens"]),
     ]
     strip = "".join(
         f'<div class="stat"><div class="stat-num">{esc(value)}</div>'
