@@ -209,9 +209,13 @@ def detail_main(ctx, p, idx):
         f'<a class="back-link" href="../index.html"><span aria-hidden="true">&larr;</span>'
         f'{bi("span", ui["back"])}</a>'
     )
+    daily = (
+        bi("span", ui["dailyLabel"], cls="daily-tag lg") if p.get("daily") else ""
+    )
     out.append(
         f'<div class="detail-top"><h1>{esc(p["name"])}</h1>'
         f'{bi("span", ctx["status"][p["status"]], cls=f"status-tag lg {p["status"]}")}'
+        f"{daily}"
         f"</div>"
     )
     out.append(bi("p", p["tagline"], cls="detail-tagline"))
@@ -483,6 +487,8 @@ def index_row(ctx, p):
     for h in p["highlights"]:
         search_bits.extend([T(h), T(h, "en")])
     search_bits.extend([T(status_label), T(status_label, "en")])
+    if p.get("daily"):
+        search_bits.extend([T(ui["dailyLabel"]), T(ui["dailyLabel"], "en")])
     for tag in p["tags"]:
         search_bits.extend([T(tags[tag]), T(tags[tag], "en")])
     search = " ".join(bit for bit in search_bits if bit)
@@ -490,12 +496,16 @@ def index_row(ctx, p):
     tag_chips = "".join(
         f'<span class="tag-chip">{bi("span", tags[t])}</span>' for t in p["tags"]
     )
+    status_cell = bi("span", status_label, cls=f"status-tag {status}")
+    if p.get("daily"):
+        status_cell += bi("span", ui["dailyLabel"], cls="daily-tag")
 
     return (
         f'<tr data-name="{esc(p["name"])}" data-lang="{esc(p["lang"])}"'
         f' data-tags="{esc(",".join(p["tags"]))}" data-status="{esc(status)}"'
         f' data-loc="{p["loc"]}" data-commits="{p["commits"]}"'
         f' data-tokens="{toks}" data-updated="{esc(p["updated"])}"'
+        f' data-daily="{"1" if p.get("daily") else "0"}"'
         f' data-search="{esc(search)}">'
         f'<td class="c-name">'
         f'<a class="row-name" href="p/{p["id"]}.html">{esc(p["name"])}</a>'
@@ -503,7 +513,7 @@ def index_row(ctx, p):
         f"</td>"
         f"{cell(ui['colLang'], esc(lang), 'c-lang')}"
         f"{cell(ui['colTags'], tag_chips, 'c-tags')}"
-        f"{cell(ui['colStatus'], bi('span', status_label, cls=f'status-tag {status}'), 'c-status')}"
+        f"{cell(ui['colStatus'], status_cell, 'c-status')}"
         f"{cell(ui['colCommits'], str(p['commits']), 'c-num c-commits')}"
         f"{cell(ui['colLoc'], num(p['loc']), 'c-num c-loc')}"
         f"{cell(ui['colTokens'], fmt_tokens(toks), 'c-num c-tokens')}"
