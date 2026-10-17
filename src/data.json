@@ -333,11 +333,11 @@
         "Gradle"
       ],
       "loc": 16700,
-      "commits": 106,
+      "commits": 108,
       "tests": 216,
       "ci": true,
       "status": "usable",
-      "updated": "2026-10-10",
+      "updated": "2026-10-13",
       "tagline": {
         "zh": "手机上的完整 Git 客户端",
         "en": "A full Git client for Android"
@@ -353,19 +353,19 @@
         },
         {
           "zh": "自建 OpenPGP 层：密钥生成、钥匙串、ASCII armor、分离式签名，不捆绑任何 gpg 二进制",
-          "en": "Hand-rolled OpenPGP: keygen, keyrings, ASCII armoring and detached signatures without bundling a GPG binary"
+          "en": "Hand-rolled OpenPGP: keygen, keyrings, ASCII armor and detached signatures without bundling a GPG binary"
         },
         {
-          "zh": "216 个单元测试覆盖 Git 核心，分布在 30 个测试文件里",
-          "en": "216 unit tests over the Git core, spread across 30 test files"
+          "zh": "216 个单元测试直接拿真 gpg 和真 git 校验：签名、验签、verify-commit 都对着真二进制跑，机器上没装就自动跳过",
+          "en": "216 unit tests cross-check against the real gpg and git binaries — signing, verification and verify-commit — and skip themselves cleanly when those tools are absent"
         },
         {
-          "zh": "CI 会核对 APK 签名证书的 SHA-256，对不上就拒绝出包——这正是那种“绿灯但其实签错包”的失败",
-          "en": "CI verifies the built APK's signing-cert SHA-256 and refuses to ship on a mismatch — exactly the failure that otherwise looks like a green run"
+          "zh": "CI 用 apksigner 读出签名证书的 SHA-256，对不上就拒绝出包；换成组织共用证书后，旧证书签的版本再也盖不上去",
+          "en": "CI reads the signing cert's SHA-256 out of the built APK and refuses to ship on a mismatch; after the move to the org-wide key, builds signed with the old cert can no longer be installed in place"
         },
         {
-          "zh": "约 16,700 行 Kotlin，这一组里最大的 Android 代码库",
-          "en": "~16,700 lines of Kotlin — the largest Android codebase in this collection"
+          "zh": "每次绿灯都重建同一个 pre-release 标签，App 轮询 api.github.com 拿版本，自己下载并调 PackageInstaller 装上",
+          "en": "Every green push recreates one rolling pre-release tag; the app polls api.github.com, downloads the APK and installs it itself through PackageInstaller"
         }
       ]
     },
@@ -386,11 +386,11 @@
         "Coroutines"
       ],
       "loc": 19600,
-      "commits": 509,
+      "commits": 528,
       "tests": 30,
       "ci": true,
       "status": "usable",
-      "updated": "2026-09-28",
+      "updated": "2026-10-17",
       "tagline": {
         "zh": "手机上的 OpenCode 智能体客户端",
         "en": "An Android client for the OpenCode coding agent"
@@ -401,24 +401,24 @@
       },
       "highlights": [
         {
-          "zh": "约 19,600 行 Kotlin、509 次提交，是这一组里迭代最久的项目",
-          "en": "~19,600 lines of Kotlin across 509 commits — the most-iterated project here"
+          "zh": "约 19,600 行 Kotlin、528 次提交，是这一组里迭代最久的项目",
+          "en": "~19,600 lines of Kotlin across 528 commits — the most-iterated project here"
         },
         {
           "zh": "手写的 Markdown 解析模块 + 打包进 assets 的 mermaid，回复里的图表直接渲染",
           "en": "A hand-written Markdown module plus vendored Mermaid renders diagrams straight in replies"
         },
         {
-          "zh": "用量日历、按模型筛选的统计图表，以及可分享的总结卡片",
-          "en": "Token-usage calendar, per-model filtered charts, and shareable summary cards"
+          "zh": "token 用量按服务器切分：每台服务器有自己的 sid 和指纹；合并两台服务器是一次真正的数据迁移——去重合并统计、改写引用、重指活跃会话",
+          "en": "Token usage is partitioned per server, each with its own sid and fingerprint; merging two servers is a real data migration — dedup-merging stats, rewriting references, re-pointing the active session"
         },
         {
-          "zh": "唯一有正式 release 工作流的仓库：打 tag 出已签名 APK",
-          "en": "The only repo with a real release workflow: tag it, get a keystore-signed APK"
+          "zh": "用量爬虫改成可续跑：每个会话一个同步游标，中途定期落快照，中断后从断点接着爬，而不是从头再来",
+          "en": "The usage crawler is now resumable: a sync cursor per session, with snapshots committed mid-crawl, so an interrupted crawl resumes at the break instead of restarting"
         },
         {
-          "zh": "AGENTS.md 要求每次提交重新生成 tokens.txt，把造这个 App 实际花掉的 AI token 成本编译进 BuildConfig",
-          "en": "AGENTS.md mandates regenerating tokens.txt on every commit, compiling the real AI token cost of building the app into BuildConfig"
+          "zh": "OkHttp 的 keep-alive 竞态自己兜：EOF / unexpected end of stream 归为瞬时错误，只对幂等请求重试，重试前先清空连接池",
+          "en": "The OkHttp keep-alive race is handled in-house: EOF and \"unexpected end of stream\" count as transient, only idempotent requests are retried, and the connection pool is evicted before each retry"
         }
       ]
     },
@@ -492,11 +492,11 @@
         "零外部依赖"
       ],
       "loc": 6450,
-      "commits": 107,
+      "commits": 121,
       "tests": 4,
       "ci": true,
       "status": "wip",
-      "updated": "2026-10-01",
+      "updated": "2026-10-12",
       "tagline": {
         "zh": "三层结构的自托管家用 ERP",
         "en": "A self-hosted household ERP in three tiers"
@@ -511,20 +511,20 @@
           "en": "Star dials out, so no inbound port ever has to be opened on the home router"
         },
         {
-          "zh": "15 个 Gradle 模块跑在裸 JDK 上：数据库、JSON 编解码、HTTP 路由全是手写的",
-          "en": "15 Gradle modules on the bare JDK: the append-only-log store, JSON codec and HTTP router are all hand-written"
+          "zh": "每个端点都过 Identity SPI 的 requireAuth：token 无效返 401，不符返 403；admin/member 两级，末位 admin 不可删",
+          "en": "Every feature endpoint goes through the Identity SPI's requireAuth — an invalid token is a 401, a mismatched role a 403 — over two roles, admin and member, where the last admin can't be deleted"
         },
         {
-          "zh": "零外部依赖——没有数据库、没有 Web 框架、没有前端框架",
-          "en": "Zero external dependencies: no database, no web framework, no UI toolkit"
+          "zh": "会话也存在那份 append-only 日志库里，重启 Star 不会把全家登出",
+          "en": "Sessions live in that same append-only log, so restarting Star no longer signs the whole household out"
         },
         {
           "zh": ".gef 特性包格式：原生 UI DSL 与 WebView HTML 两种渲染器并存",
           "en": "The .gef bundle format renders either as a native UI DSL or as HTML inside a WebView"
         },
         {
-          "zh": "每次 CI 发一个滚动 canary：服务器压缩包、APK 和特性包一起发布，保证客户端和服务端同版本",
-          "en": "One rolling canary release carries the server zips, APKs and feature bundles together, so client and server stay in lockstep"
+          "zh": "登录密码是手写 PBKDF2（21 万次迭代），也可以走 ed25519 SSH 密钥挑战应答；全程零外部依赖",
+          "en": "Passwords go through a hand-rolled PBKDF2 at 210k iterations, or an ed25519 SSH-key challenge-response; zero external dependencies throughout"
         }
       ]
     },
@@ -546,11 +546,11 @@
         "embed"
       ],
       "loc": 5002,
-      "commits": 33,
-      "tests": 28,
+      "commits": 34,
+      "tests": 29,
       "ci": false,
       "status": "usable",
-      "updated": "2026-09-09",
+      "updated": "2026-10-12",
       "tagline": {
         "zh": "带网页控制台的 TCP 端口转发器",
         "en": "A TCP port forwarder with a web console"
@@ -573,12 +573,12 @@
           "en": "Password, ssh-agent or private-key auth, plus a probe endpoint that tests a login before the rule is saved"
         },
         {
-          "zh": "README 没写的还有自建中继：server / client 子命令走自定义的换行分隔 JSON 控制协议，按需建立数据连接",
-          "en": "Beyond the README: server / client subcommands relay over a custom newline-delimited JSON control protocol with on-demand data connections"
+          "zh": "每 30 秒让远端 sshd 回拨它自己刚绑上的反向转发端口，5 秒内绕回来才算健康；探测从不接触真正的转发目标，目标宕机不会被误判成隧道坏了",
+          "en": "Every 30 s the remote sshd dials its own just-bound reverse-forward port and must return in 5 s to count healthy; the probe never touches the target, so a downed service isn't mistaken for a dead tunnel"
         },
         {
-          "zh": "28 个 Go 测试，其中包含一个跑在进程内的 SSH 测试服务器",
-          "en": "28 Go tests, including a real SSH test server running in-process"
+          "zh": "隧道挂掉时只在由健康转不健康那一次报错，然后按 1 秒翻倍、15 秒封顶的退避重绑监听；复活是安静的，失败只吵一次",
+          "en": "A dead tunnel reports exactly once — on the healthy-to-unhealthy transition — then re-binds its listener on a 1 s doubling backoff capped at 15 s; recovery is silent, failure is loud only once"
         }
       ]
     },
@@ -704,11 +704,11 @@
         "零第三方库"
       ],
       "loc": 3573,
-      "commits": 25,
+      "commits": 41,
       "tests": 0,
       "ci": true,
       "status": "done",
-      "updated": "2026-10-10",
+      "updated": "2026-10-17",
       "tagline": {
         "zh": "QQ 缓存图片的相册",
         "en": "A gallery for images cached inside Tencent QQ"
@@ -723,20 +723,20 @@
           "en": "Streams find -print0 | xargs -0 stat across ~165k files with an on-disk TSV index, so relaunching is instant"
         },
         {
-          "zh": "删一张图要连带 QQ 生成的 3–4 个同名变体，但只统计真实存在的那几个",
-          "en": "Deleting one image expands to QQ's 3–4 sibling variants — but only the files that actually existed get counted"
+          "zh": "root shell 分两路：删图走常驻 su 管道（一进一出，不跑大流量），读图各自 fork su，用 Semaphore(4) 限流——管道串行，会让缩略图排队",
+          "en": "Two root paths: deletes ride one long-lived su pipe, while image reads fork one su each and cap at Semaphore(4) — a shared pipe is serial, so thumbnails would queue behind each other"
         },
         {
           "zh": "内置更新器走 4 个可选镜像，但版本元数据永远从 api.github.com 读，镜像没法谎报版本",
           "en": "The in-app updater pulls through 4 selectable mirrors, while release metadata is always read from api.github.com so a mirror can't spoof a version"
         },
         {
-          "zh": "12 种 APK 安装失败码各自对应一条明确的 UI 提示，而不是一句“安装失败”",
-          "en": "Twelve distinct install-failure codes each map to their own UI message, instead of one generic 'install failed'"
+          "zh": "GIF、动图 WebP、APNG 都真播起来而不是冻在第一帧；解码按像素预算而非边长折半，长截图会缩到 32 MiB / 8192 px 以内，不会把进程 OOM 掉",
+          "en": "GIF, animated WebP and APNG play rather than freeze on frame one; decoding uses a pixel budget, so a long screenshot shrinks within 32 MiB / 8192 px instead of OOM-ing the process"
         },
         {
-          "zh": "零第三方库，连 JSON 解析器都是自己写的；因为每次读文件都要 fork su，用 Semaphore(4) 限制并发",
-          "en": "Zero third-party libraries — even the JSON parser is hand-rolled; a Semaphore(4) caps concurrency because every read forks su"
+          "zh": "零第三方库，连 JSON 解析器都是自己写的",
+          "en": "Zero third-party libraries — even the JSON parser is hand-rolled"
         }
       ]
     },
@@ -756,11 +756,11 @@
         "Gradle KTS"
       ],
       "loc": 3360,
-      "commits": 32,
-      "tests": 28,
+      "commits": 37,
+      "tests": 30,
       "ci": true,
       "status": "wip",
-      "updated": "2026-09-26",
+      "updated": "2026-10-12",
       "tagline": {
         "zh": "给照片加相框",
         "en": "Photo framing for Android"
@@ -779,12 +779,12 @@
           "en": "A hand-rolled separable box blur and stacked-rectangle shadows, chosen so output doesn't change between Android versions"
         },
         {
-          "zh": "README 里写下了 canary 更新的威胁模型：清单被投毒也只能让更新失败，装不上别人的包——因为 Android 拒绝不同签名的更新",
-          "en": "The README reasons through the canary-updater threat model: a poisoned manifest can only fail the update, never install a foreign APK, because Android refuses a differently-signed update"
+          "zh": "canary 现在用组织共用密钥签：清单里的 assetName 被当成 URL 片段校验（单段 ASCII、以 .apk 结尾），签名换过一次之后要手动卸载重装一回",
+          "en": "The canary is now signed with the org-wide key: the manifest's assetName is validated as a URL fragment (single ASCII segment, ending in .apk), and the one key switch costs a single manual reinstall"
         },
         {
-          "zh": "CI 真的跑 testDebugUnitTest 和 lintDebug 并当门禁用，不是只 assemble 一下",
-          "en": "CI actually runs testDebugUnitTest and lintDebug as gates, rather than just assembling"
+          "zh": "CI 直接拿 apksigner 退出码当断言，不再 grep 输出——grep 不匹配会把证书吞进管道，签好名的包像失败；缺 keystore secret 拒绝发布",
+          "en": "CI asserts on apksigner's exit status rather than grepping output — a failed grep swallows the certificates and makes a signed APK look broken; without the keystore secret, CI won't publish"
         },
         {
           "zh": "7 个一键预设：拍立得、暗夜、虚化、暖阳、双线、留白、白边",
