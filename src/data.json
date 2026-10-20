@@ -303,7 +303,8 @@
     "go": "Go",
     "cpp": "C++",
     "c": "C",
-    "js": "JavaScript"
+    "js": "JavaScript",
+    "python": "Python"
   },
   "STATUS": {
     "wip": {
@@ -1175,6 +1176,61 @@
         {
           "zh": "默认端口 29810 来自字符 “tr” 的两个 ASCII 码",
           "en": "The default port 29810 comes from the ASCII bytes of “tr”"
+        }
+      ]
+    },
+    {
+      "id": "step-language",
+      "name": "step-language",
+      "repo": "Geno1024-AIGC/step-language",
+      "url": "https://github.com/Geno1024-AIGC/step-language",
+      "tags": [
+        "cli",
+        "web",
+        "tooling"
+      ],
+      "lang": "python",
+      "stack": [
+        "Python 3.10+",
+        "纯标准库",
+        "Vanilla JS",
+        "无构建步骤"
+      ],
+      "loc": 7155,
+      "commits": 19,
+      "tests": 42,
+      "ci": true,
+      "status": "done",
+      "daily": false,
+      "updated": "2026-10-21",
+      "tagline": {
+        "zh": "把纯文本流程编译成单文件交互指南的小型 DSL",
+        "en": "A small DSL that compiles plain-text procedures into a single interactive guide"
+      },
+      "summary": {
+        "zh": "用纯文本描述分步流程：步骤、勾选项、提问分支、提示、警告、图片和代码块各占一行，编译器产出一个可离线、可打印、带进度保存的独立 HTML 页面，图片保持外链懒加载。编译器只用 Python 标准库，生成的页面只用原生 CSS 和 JavaScript。",
+        "en": "A small DSL for written procedures: steps, checklists, question branches, tips, warnings, images and code blocks are one line each, and the compiler emits a standalone HTML guide that works offline, prints cleanly and saves progress — with images left external and lazy-loaded. The compiler is Python standard library only, and the generated page uses vanilla CSS and JavaScript."
+      },
+      "highlights": [
+        {
+          "zh": "生成的 body 是空壳：每个字都由内嵌的 JSON 在客户端渲染。8 步示例 54 KB，其中 46 KB 是 CSS 和 JS 骨架，真正的内容只有 4.9 KB",
+          "en": "The generated body ships empty — every word is rendered client-side from the embedded JSON; the 8-step example is 54 KB, of which 46 KB is CSS and JS chrome and the content itself is 4.9 KB"
+        },
+        {
+          "zh": "编译器 1,656 行，全是 Python 标准库，零依赖；生成的页面没有外部 link、没有外部 script，字体走系统栈",
+          "en": "The compiler is 1,656 lines of Python standard library with zero dependencies; the generated page loads no external link or script, and falls back to system fonts"
+        },
+        {
+          "zh": "跳转目标先收集、最后统一解析，所以前向引用不用预读、也不用二次读文件；再从 @start 做一次可达性 DFS，够不着的步骤会直接报出警告",
+          "en": "Jump targets are collected during the pass and resolved only at the end, so forward references work with no pre-read and no second file read; a reachability DFS from @start then flags unreachable steps"
+        },
+        {
+          "zh": "勾选进度存在 localStorage，键里带 @version——改版本号不只是忽略旧进度，启动时会把旧键整个删掉",
+          "en": "Progress lives in localStorage keyed by @version — bumping it does not merely ignore the old state; the app walks localStorage on load and deletes every stale key"
+        },
+        {
+          "zh": "浏览器里那份编译器是手写的 JS 移植版；CI 用 Node 调起 Python 解析器，把两边的解析结果和警告逐字段比对，不一致就让构建失败",
+          "en": "The in-browser compiler is a hand-written JavaScript port; CI shells out from Node to the Python parser and deep-compares both the parse result and the warnings, failing the build on any drift"
         }
       ]
     }

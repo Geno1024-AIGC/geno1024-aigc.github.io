@@ -2,23 +2,23 @@
 
 一个用 AI 写成的项目合集站点。**0% 人工代码**——人只提要求和验收，代码一行都不写。
 
-A showcase site for 16 projects written entirely by AI. Nothing here was typed by a human.
+A showcase site for 17 projects written entirely by AI. Nothing here was typed by a human.
 
 **在线访问：<https://geno1024-aigc.github.io>**
 
 ## 收录内容
 
-16 个项目，合计：
+17 个项目，合计：
 
 | 指标 | 数值 |
 | --- | --- |
-| 代码行数 | 78,994 |
-| 提交数 | 1,058 |
-| 自动化测试 | 369 |
-| 接入 CI | 10 / 16 |
-| AI Token 消耗 | 2.07B |
+| 代码行数 | 86,149 |
+| 提交数 | 1,077 |
+| 自动化测试 | 411 |
+| 接入 CI | 11 / 17 |
+| AI Token 消耗 | 2.10B |
 
-类型覆盖 Android 应用、Go 服务、Qt / C++ 桌面工具，以及几个从零实现的编解码器和解释器：ZIP、PDF、二维码、ZIP64、CFF 字体，还有一个纯前端的 JavaScript 单步调试器。
+类型覆盖 Android 应用、Go 服务、Qt / C++ 桌面工具，以及几个从零实现的编解码器和解释器：ZIP、PDF、二维码、ZIP64、CFF 字体，一个纯前端的 JavaScript 单步调试器，还有一个把纯文本流程编译成离线 HTML 指南的小型 DSL。
 
 ## 站点结构
 
@@ -26,7 +26,7 @@ A showcase site for 16 projects written entirely by AI. Nothing here was typed b
 
 | 路径 | 作用 |
 | --- | --- |
-| `src/data.json` | 站点文案与 16 个项目记录，双语 |
+| `src/data.json` | 站点文案与 17 个项目记录，双语 |
 | `src/tokens.json` | 各项目的 AI token 用量（输入 / 输出 / 推理 / 缓存读 / 缓存写 / 非缓存 / 合计） |
 | `scripts/collect_tokens.py` | 从本机 OpenCode 数据库采集 token 用量 |
 | `build.py` | 生成 `index.html`、`about.html` 和 `p/<id>.html` |

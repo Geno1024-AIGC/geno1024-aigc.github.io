@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>step-language · Geno1024-AIGC</title>
+<meta name="description" content="A small DSL that compiles plain-text procedures into a single interactive guide">
+<meta property="og:title" content="step-language · Geno1024-AIGC">
+<meta property="og:description" content="A small DSL that compiles plain-text procedures into a single interactive guide">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%230b0d10'/><text x='50%25' y='55%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-size='34' font-weight='700' fill='%235eead4'>G</text></svg>">
+<link rel="stylesheet" href="../assets/style.css">
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?b704b711b597a23969b2e1dc1f76c98d";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</head>
+<body data-title-en="step-language · Geno1024-AIGC">
+<div class="bg-grid" aria-hidden="true"></div>
+<div class="bg-glow" aria-hidden="true"></div>
+
+<header class="site-header">
+  <a class="brand" href="../index.html">
+    <span class="brand-mark">G</span>
+    <span class="brand-text">Geno1024<span class="brand-dim">-AIGC</span></span>
+  </a>
+  <nav class="site-nav">
+    <a href="../index.html" data-nav="projects" class="active" data-en="Projects">项目</a>
+    <a href="../about.html" data-nav="about" data-en="About">关于</a>
+    <button id="lang-toggle" type="button" aria-label="Switch language">
+      <span class="lang-opt" data-lang-opt="zh">中</span>
+      <span class="lang-sep"></span>
+      <span class="lang-opt" data-lang-opt="en">EN</span>
+    </button>
+  </nav>
+</header>
+
+<main>
+<div class="detail fade-in">
+<a class="back-link" href="../index.html"><span aria-hidden="true">&larr;</span><span data-en="Back to all projects">返回全部项目</span></a>
+<div class="detail-top"><h1>step-language</h1><span class="status-tag lg done" data-en="Done">已完成</span></div>
+<p class="detail-tagline" data-en="A small DSL that compiles plain-text procedures into a single interactive guide">把纯文本流程编译成单文件交互指南的小型 DSL</p>
+<a class="detail-repo" href="https://github.com/Geno1024-AIGC/step-language" target="_blank" rel="noopener">Geno1024-AIGC/step-language &nbsp;&nearr;</a>
+<div class="detail-block"><h2 class="section-label" data-en="What it is">这是什么</h2><p class="detail-summary" data-en="A small DSL for written procedures: steps, checklists, question branches, tips, warnings, images and code blocks are one line each, and the compiler emits a standalone HTML guide that works offline, prints cleanly and saves progress — with images left external and lazy-loaded. The compiler is Python standard library only, and the generated page uses vanilla CSS and JavaScript.">用纯文本描述分步流程：步骤、勾选项、提问分支、提示、警告、图片和代码块各占一行，编译器产出一个可离线、可打印、带进度保存的独立 HTML 页面，图片保持外链懒加载。编译器只用 Python 标准库，生成的页面只用原生 CSS 和 JavaScript。</p></div>
+<div class="detail-block"><h2 class="section-label" data-en="Highlights">实现要点</h2><ul class="points"><li data-en="The generated body ships empty — every word is rendered client-side from the embedded JSON; the 8-step example is 54 KB, of which 46 KB is CSS and JS chrome and the content itself is 4.9 KB">生成的 body 是空壳：每个字都由内嵌的 JSON 在客户端渲染。8 步示例 54 KB，其中 46 KB 是 CSS 和 JS 骨架，真正的内容只有 4.9 KB</li><li data-en="The compiler is 1,656 lines of Python standard library with zero dependencies; the generated page loads no external link or script, and falls back to system fonts">编译器 1,656 行，全是 Python 标准库，零依赖；生成的页面没有外部 link、没有外部 script，字体走系统栈</li><li data-en="Jump targets are collected during the pass and resolved only at the end, so forward references work with no pre-read and no second file read; a reachability DFS from @start then flags unreachable steps">跳转目标先收集、最后统一解析，所以前向引用不用预读、也不用二次读文件；再从 @start 做一次可达性 DFS，够不着的步骤会直接报出警告</li><li data-en="Progress lives in localStorage keyed by @version — bumping it does not merely ignore the old state; the app walks localStorage on load and deletes every stale key">勾选进度存在 localStorage，键里带 @version——改版本号不只是忽略旧进度，启动时会把旧键整个删掉</li><li data-en="The in-browser compiler is a hand-written JavaScript port; CI shells out from Node to the Python parser and deep-compares both the parse result and the warnings, failing the build on any drift">浏览器里那份编译器是手写的 JS 移植版；CI 用 Node 调起 Python 解析器，把两边的解析结果和警告逐字段比对，不一致就让构建失败</li></ul></div>
+<div class="detail-block"><h2 class="section-label" data-en="Stack">技术栈</h2><div class="chip-row"><span class="stack-chip">Python 3.10+</span><span class="stack-chip">纯标准库</span><span class="stack-chip">Vanilla JS</span><span class="stack-chip">无构建步骤</span></div></div>
+<div class="detail-block"><h2 class="section-label" data-en="Engineering">工程指标</h2><div class="metrics"><div class="metric"><div class="metric-val">7,155</div><div class="metric-key" data-en="Lines">代码行数</div></div><div class="metric"><div class="metric-val">19</div><div class="metric-key" data-en="Commits">提交</div></div><div class="metric"><div class="metric-val">42</div><div class="metric-key" data-en="Tests">测试</div></div><div class="metric"><div class="metric-val on" data-en="Yes">已接入</div><div class="metric-key" data-en="CI">持续集成</div></div><div class="metric"><div class="metric-val" data-en="2026/10/21">2026-10-21</div><div class="metric-key" data-en="Updated">最后更新</div></div></div></div>
+<div class="detail-block"><h2 class="section-label" data-en="AI token usage">AI Token 用量</h2><div class="metrics tokens"><div class="metric"><div class="metric-val tok">1,524,620</div><div class="metric-key" data-en="Input">输入</div></div><div class="metric"><div class="metric-val tok">135,624</div><div class="metric-key" data-en="Output">输出</div></div><div class="metric"><div class="metric-val tok">172,863</div><div class="metric-key" data-en="Reasoning">推理</div></div><div class="metric"><div class="metric-val tok">23,032,960</div><div class="metric-key" data-en="Cache read">缓存读</div></div><div class="metric"><div class="metric-val tok">0</div><div class="metric-key" data-en="Cache write">缓存写</div></div><div class="metric"><div class="metric-val tok">1,833,107</div><div class="metric-key" data-en="Fresh">非缓存</div></div><div class="metric"><div class="metric-val tok">24,866,067</div><div class="metric-key" data-en="Total">合计</div></div></div></div>
+<div class="detail-block"><h2 class="section-label" data-en="Tags">标签</h2><div class="chip-row"><span class="stack-chip" data-en="CLI">命令行</span><span class="stack-chip" data-en="Web">Web</span><span class="stack-chip" data-en="Tooling">工具</span></div></div>
+<div class="detail-nav"><a href="task-roulette.html"><small data-en="Previous">上一个</small>task-roulette</a></div>
+</div>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <p class="footer-note" data-en="Written entirely by AI · 0% human code · mostly personal tools">全部由 AI 写成 · 0% 人工代码 · 大部分为个人自用工具</p>
+    <div class="footer-links">
+      <a href="https://github.com/Geno1024-AIGC" target="_blank" rel="noopener">GitHub org</a>
+      <span class="footer-dot"></span>
+      <span class="footer-stats">17 · 86,149 LOC · 1,077 commits · 2.10B tok</span>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/app.js"></script>
+</body>
+</html>
