@@ -715,12 +715,12 @@
         "零第三方库"
       ],
       "loc": 3573,
-      "commits": 41,
+      "commits": 47,
       "tests": 0,
       "ci": true,
       "status": "done",
       "daily": true,
-      "updated": "2026-10-17",
+      "updated": "2026-10-20",
       "tagline": {
         "zh": "QQ 缓存图片的相册",
         "en": "A gallery for images cached inside Tencent QQ"
@@ -731,16 +731,16 @@
       },
       "highlights": [
         {
-          "zh": "用 find -print0 | xargs -0 stat 流式扫描约 16.5 万个文件，并落一份 TSV 索引，重开就秒进",
-          "en": "Streams find -print0 | xargs -0 stat across ~165k files with an on-disk TSV index, so relaunching is instant"
+          "zh": "find -print0 | xargs -0 stat 流式扫描约 16.5 万个文件，三棵树各落一份 TSV 索引——切换目录不用重扫，重开就秒进",
+          "en": "Streams find -print0 | xargs -0 stat across ~165k files, keeping one TSV index per tree — switch trees without rescanning, relaunch instantly"
         },
         {
           "zh": "root shell 分两路：删图走常驻 su 管道（一进一出，不跑大流量），读图各自 fork su，用 Semaphore(4) 限流——管道串行，会让缩略图排队",
           "en": "Two root paths: deletes ride one long-lived su pipe, while image reads fork one su each and cap at Semaphore(4) — a shared pipe is serial, so thumbnails would queue behind each other"
         },
         {
-          "zh": "内置更新器走 4 个可选镜像，但版本元数据永远从 api.github.com 读，镜像没法谎报版本",
-          "en": "The in-app updater pulls through 4 selectable mirrors, while release metadata is always read from api.github.com so a mirror can't spoof a version"
+          "zh": "删除只认你点过的那条路径：shell 报回来的路径必须落在请求集合里，多出一个就把「已删 N 张」变成报错",
+          "en": "Deletes only credit the paths you picked: every path the shell reports must be in the requested set, and one stray path turns \"deleted N\" into an error"
         },
         {
           "zh": "GIF、动图 WebP、APNG 都真播起来而不是冻在第一帧；解码按像素预算而非边长折半，长截图会缩到 32 MiB / 8192 px 以内，不会把进程 OOM 掉",

@@ -13,10 +13,10 @@ A showcase site for 16 projects written entirely by AI. Nothing here was typed b
 | 指标 | 数值 |
 | --- | --- |
 | 代码行数 | 78,994 |
-| 提交数 | 1,052 |
+| 提交数 | 1,058 |
 | 自动化测试 | 369 |
 | 接入 CI | 10 / 16 |
-| AI Token 消耗 | 1.98B |
+| AI Token 消耗 | 2.07B |
 
 类型覆盖 Android 应用、Go 服务、Qt / C++ 桌面工具，以及几个从零实现的编解码器和解释器：ZIP、PDF、二维码、ZIP64、CFF 字体，还有一个纯前端的 JavaScript 单步调试器。
 
